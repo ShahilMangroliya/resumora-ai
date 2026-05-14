@@ -12,6 +12,11 @@ def test_collapses_three_or_more_newlines_to_two():
     assert normalize_text("a\n\n\n\n\nb") == "a\n\nb"
 
 
+def test_collapses_whitespace_only_lines_between_content():
+    # PDF parsers emit "   \n   \n" between sections; must collapse to max two newlines.
+    assert normalize_text("Section A\n   \n   \nSection B") == "Section A\n\nSection B"
+
+
 def test_trims_each_line_and_overall():
     assert normalize_text("  hello  \n  world  ") == "hello\nworld"
 

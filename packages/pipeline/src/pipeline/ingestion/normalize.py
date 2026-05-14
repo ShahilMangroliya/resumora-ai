@@ -21,8 +21,8 @@ def normalize_text(raw: str) -> str:
         if ch in _KEEP_CONTROL or unicodedata.category(ch)[0] != "C"
     )
     text = re.sub(r"[ \t]+", " ", text)
-    text = re.sub(r"\n{3,}", "\n\n", text)
     text = "\n".join(line.strip() for line in text.split("\n"))
+    text = re.sub(r"\n{3,}", "\n\n", text)
     text = text.strip()
     if not text:
         raise IngestionError("Document contains no readable text")

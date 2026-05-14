@@ -11,6 +11,8 @@ See the design doc: `docs/superpowers/specs/2026-05-14-ai-pipeline-design.md`
 make install
 ```
 
+Also see `docs/ollama-setup.md` to install the local LLM runtime.
+
 ## Run (dev)
 
 ```bash

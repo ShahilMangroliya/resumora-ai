@@ -19,6 +19,8 @@ ollama serve
 Leave this running in its own terminal (or it runs as a background service
 after `brew services start ollama`).
 
+If `ollama serve` fails with "address already in use", the server is already running as a background service — skip to the next step.
+
 ## Pull the dev model
 
 ```bash

@@ -37,6 +37,11 @@ def test_ingest_resume_rejects_unsupported_extension(resume_txt_bytes):
         ingest_resume(resume_txt_bytes, "jane.rtf")
 
 
+def test_ingest_resume_rejects_missing_extension(resume_txt_bytes):
+    with pytest.raises(IngestionError, match="no extension"):
+        ingest_resume(resume_txt_bytes, "resume_no_ext")
+
+
 def test_ingest_resume_rejects_scanned_pdf(blank_pdf_bytes):
     with pytest.raises(IngestionError, match="no readable text"):
         ingest_resume(blank_pdf_bytes, "scan.pdf")

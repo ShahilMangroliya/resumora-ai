@@ -18,6 +18,9 @@ def ingest_resume(data: bytes, filename: str) -> ResumeDoc:
     ext = Path(filename).suffix.lower().lstrip(".")
     page_count: int | None = None
 
+    if not ext:
+        raise IngestionError(f"Cannot determine file format: '{filename}' has no extension")
+
     if ext == "pdf":
         raw_text, page_count = extract_pdf_text(data)
     elif ext == "docx":

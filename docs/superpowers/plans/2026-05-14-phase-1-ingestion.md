@@ -16,6 +16,8 @@
 - **Scanned / image-only PDFs raise `IngestionError`** — `pypdf` yields empty text, which is treated as an empty document. No OCR.
 - **Pydantic models** for `ResumeDoc` / `JobDoc` — consistent with FastAPI downstream, free validation, still framework-agnostic as pure data.
 
+> **Note on test data:** the master spec §8 mentions "sample resumes/JDs in `data/`". This phase deliberately generates unit-test fixtures in memory via `conftest.py` instead — `data/` is reserved for the model training set and gold eval set (Phases 2–3), not unit-test inputs.
+
 ---
 
 ## File Structure

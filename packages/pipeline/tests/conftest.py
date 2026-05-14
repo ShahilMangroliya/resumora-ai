@@ -2,6 +2,9 @@ import io
 
 import pytest
 from docx import Document
+
+# reportlab is a dev-only dependency (workspace-root [dependency-groups].dev),
+# used solely to generate PDF test fixtures. Tests require dev deps installed.
 from reportlab.pdfgen import canvas
 
 _RESUME_LINES = [

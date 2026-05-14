@@ -203,6 +203,11 @@ def test_collapses_three_or_more_newlines_to_two():
     assert normalize_text("a\n\n\n\n\nb") == "a\n\nb"
 
 
+def test_collapses_whitespace_only_lines_between_content():
+    # PDF parsers emit "   \n   \n" between sections; must collapse to max two newlines.
+    assert normalize_text("Section A\n   \n   \nSection B") == "Section A\n\nSection B"
+
+
 def test_trims_each_line_and_overall():
     assert normalize_text("  hello  \n  world  ") == "hello\nworld"
 
@@ -260,18 +265,24 @@ def normalize_text(raw: str) -> str:
         if ch in _KEEP_CONTROL or unicodedata.category(ch)[0] != "C"
     )
     text = re.sub(r"[ \t]+", " ", text)
-    text = re.sub(r"\n{3,}", "\n\n", text)
     text = "\n".join(line.strip() for line in text.split("\n"))
+    text = re.sub(r"\n{3,}", "\n\n", text)
     text = text.strip()
     if not text:
         raise IngestionError("Document contains no readable text")
     return text
 ```
 
+> **Note (post-review correction):** the per-line `strip()` must run **before** the
+> `\n{3,}` collapse — otherwise whitespace-only lines between content (a routine
+> PDF/DOCX extraction artifact) survive as `\n\n\n`. This ordering was corrected
+> during code review; the test block above includes the corresponding regression
+> test `test_collapses_whitespace_only_lines_between_content`.
+
 - [ ] **Step 4: Run the test to verify it passes**
 
 Run: `uv run pytest packages/pipeline/tests/ingestion/test_normalize.py -v`
-Expected: PASS — 7 passed.
+Expected: PASS — 8 passed.
 
 - [ ] **Step 5: Commit**
 

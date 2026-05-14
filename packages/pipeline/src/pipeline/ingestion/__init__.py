@@ -5,7 +5,7 @@ from pipeline.ingestion.models import JobDoc, ResumeDoc
 from pipeline.ingestion.normalize import normalize_text
 from pipeline.ingestion.parsers import extract_docx_text, extract_pdf_text
 
-__all__ = ["IngestionError", "JobDoc", "ResumeDoc", "ingest_resume"]
+__all__ = ["IngestionError", "JobDoc", "ResumeDoc", "ingest_job", "ingest_resume"]
 
 
 def ingest_resume(data: bytes, filename: str) -> ResumeDoc:
@@ -38,3 +38,12 @@ def ingest_resume(data: bytes, filename: str) -> ResumeDoc:
         char_count=len(text),
         page_count=page_count,
     )
+
+
+def ingest_job(text: str) -> JobDoc:
+    """Ingest a job description (pasted plain text) into a normalized JobDoc.
+
+    Raises IngestionError if the text has no readable content.
+    """
+    normalized = normalize_text(text)
+    return JobDoc(raw_text=normalized, char_count=len(normalized))

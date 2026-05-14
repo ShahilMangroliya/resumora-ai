@@ -25,6 +25,10 @@ def extract_pdf_text(data: bytes) -> tuple[str, int]:
 def extract_docx_text(data: bytes) -> str:
     """Extract raw text from DOCX bytes — one paragraph per line.
 
+    Note: text inside table cells is not extracted. Resumes that use
+    tables for layout may produce incomplete output; a future task can
+    add table extraction if needed.
+
     Returns un-normalized text — the caller normalizes.
     """
     try:

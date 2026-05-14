@@ -203,8 +203,8 @@ def test_pipeline_is_importable():
 
 - [ ] **Step 4: Sync the workspace**
 
-Run: `uv sync`
-Expected: completes without error, creates `.venv/` and `uv.lock`, installs `pipeline` as an editable workspace member.
+Run: `uv sync --all-packages`
+Expected: completes without error, creates `.venv/` and `uv.lock`, installs `pipeline` as an editable workspace member. (`--all-packages` is required: the root `pyproject.toml` has `package = false` and nothing depends on `pipeline`, so plain `uv sync` skips workspace members.)
 
 - [ ] **Step 5: Run the smoke test to verify it passes**
 
@@ -297,7 +297,7 @@ def test_health_returns_ok():
 
 - [ ] **Step 5: Sync the workspace**
 
-Run: `uv sync`
+Run: `uv sync --all-packages`
 Expected: completes without error; `api` is installed as an editable workspace member alongside `pipeline`. `uv.lock` is updated.
 
 - [ ] **Step 6: Run the test to verify it fails**
@@ -397,7 +397,7 @@ Create `Makefile` (note: the recipe lines must be indented with a TAB, not space
 .PHONY: install dev test lint
 
 install:
-	uv sync
+	uv sync --all-packages
 	npm --prefix apps/web install
 
 dev:

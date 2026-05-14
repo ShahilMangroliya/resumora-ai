@@ -1,0 +1,31 @@
+[project]
+name = "ai-pipeline"
+version = "0.1.0"
+description = "ResumeFit — an open-source resume/job-matching AI pipeline"
+requires-python = ">=3.12"
+
+[tool.uv]
+package = false
+
+# `apps/api` is added to this list in Task 3 — uv requires every
+# declared member to exist on disk, so members are added as they are created.
+[tool.uv.workspace]
+members = ["packages/pipeline"]
+
+[tool.uv.sources]
+pipeline = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "httpx>=0.27",
+    "ruff>=0.6",
+    "honcho>=2.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["apps", "packages"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"

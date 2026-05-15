@@ -4,6 +4,13 @@ An open-source AI pipeline that scores a resume against a job description,
 explains the fit, and suggests bullet-point rewrites — fully self-hosted,
 no paid APIs.
 
+> New to AI/ML and coming from a software-engineering background?
+> Start with [`docs/learning-guide.md`](docs/learning-guide.md) — the
+> narrative walkthrough — and use
+> [`docs/concepts/`](docs/concepts/README.md) as a per-topic
+> reference (tokens, embeddings, transformers, LoRA, prompting, etc.)
+> with curated links to authoritative external sources.
+
 - **Fit score (0–100)** from a fine-tuned DistilBERT + LoRA classifier
   hosted on the Hugging Face Hub.
 - **Skill match report** — required and nice-to-have skills, matched

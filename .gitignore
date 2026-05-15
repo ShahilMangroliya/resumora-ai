@@ -21,6 +21,9 @@ node_modules/
 # MLflow
 mlruns/
 
+# Phase 3 — training outputs (model checkpoints, adapters)
+outputs/
+
 # Generated data
 data/generated/
 

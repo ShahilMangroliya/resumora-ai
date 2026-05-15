@@ -37,3 +37,4 @@ make test
 - **Phase 4 — score & similarity:** [plan](docs/superpowers/plans/2026-05-15-phase-4-score.md), [supplement](docs/superpowers/specs/2026-05-15-phase-4-score-supplement.md), [guide](docs/phase-4-score.md).
 - **Phase 5 — reasoning:** [plan](docs/superpowers/plans/2026-05-15-phase-5-reasoning.md), [supplement](docs/superpowers/specs/2026-05-15-phase-5-reasoning-supplement.md), [guide](docs/phase-5-reasoning.md).
 - **Phase 6 — API:** [plan](docs/superpowers/plans/2026-05-15-phase-6-api.md), [guide](docs/phase-6-api.md).
+- **Phase 7 — Frontend:** [plan](docs/superpowers/plans/2026-05-15-phase-7-frontend.md), [guide](docs/phase-7-frontend.md).

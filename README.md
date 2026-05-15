@@ -27,3 +27,7 @@ frontend (http://localhost:3000) together.
 ```bash
 make test
 ```
+
+## Phases
+
+- **Phase 2 — data layer:** see [docs/phase-2-data.md](docs/phase-2-data.md) for the extraction module, synthetic pair generator, gold seed, and the HF Hub publish step.

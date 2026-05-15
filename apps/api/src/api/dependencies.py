@@ -5,7 +5,6 @@ from functools import lru_cache
 from typing import Callable, Protocol
 
 from fastapi import Depends
-
 from pipeline.extraction import (
     JobProfile,
     OllamaClient,

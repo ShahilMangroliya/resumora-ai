@@ -20,9 +20,7 @@ def test_generate_reasoning_against_live_ollama():
             SkillMatch(jd_skill="python", resume_skill="Python", similarity=0.98, matched=True),
         ],
         required_missing=[
-            SkillMatch(
-                jd_skill="kubernetes", resume_skill="docker", similarity=0.4, matched=False
-            ),
+            SkillMatch(jd_skill="kubernetes", resume_skill="docker", similarity=0.4, matched=False),
         ],
         nice_to_have_matched=[],
         nice_to_have_missing=[],

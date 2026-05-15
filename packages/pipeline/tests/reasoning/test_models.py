@@ -74,7 +74,9 @@ def test_reasoning_result_rejects_fewer_than_three_reasons():
 
 def test_reasoning_result_rejects_more_than_three_reasons():
     with pytest.raises(ValidationError):
-        ReasoningResult(reasons=_three_reasons() + [_three_reasons()[0]], rewrites=_three_rewrites())
+        ReasoningResult(
+            reasons=_three_reasons() + [_three_reasons()[0]], rewrites=_three_rewrites()
+        )
 
 
 def test_reasoning_result_rejects_fewer_than_three_rewrites():

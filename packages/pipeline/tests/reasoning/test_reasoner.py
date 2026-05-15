@@ -132,9 +132,7 @@ def test_generate_reasoning_raises_on_wrong_reason_count():
 
 def test_generate_reasoning_raises_on_wrong_rewrite_count():
     bad = _valid_payload()
-    bad["rewrites"] = bad["rewrites"] + [
-        {"original": "", "rewritten": "x", "rationale": "y"}
-    ]
+    bad["rewrites"] = bad["rewrites"] + [{"original": "", "rewritten": "x", "rationale": "y"}]
     client = FakeClient(payloads=[bad])
     with pytest.raises(ReasoningError, match="invalid"):
         generate_reasoning(

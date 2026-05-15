@@ -23,7 +23,7 @@ Both modules are pure libraries with no FastAPI, no Ollama, no orchestration kno
 from pipeline.scoring import Scorer, ScoreResult
 
 scorer = Scorer.from_pretrained(
-    "USER/resumefit-distilbert-lora",   # HF Hub repo id OR local path
+    "USER/resumora-ai-distilbert-lora",   # HF Hub repo id OR local path
     base_model="distilbert-base-uncased",  # default
     device="cpu",                          # default
 )
@@ -182,4 +182,4 @@ These are heavy. They are correct here because the Phase 6 API depends on `pipel
 
 The Phase 4 plan opens with one explicit prerequisite:
 
-1. A Phase 3 model has been published to HF Hub at `<HF_USERNAME>/resumefit-distilbert-lora` *or* a local trained adapter directory exists. Phase 4 development can proceed against the local smoke-trained adapter (CPU run); the integration test against HF Hub is the only task that requires the published model.
+1. A Phase 3 model has been published to HF Hub at `<HF_USERNAME>/resumora-ai-distilbert-lora` *or* a local trained adapter directory exists. Phase 4 development can proceed against the local smoke-trained adapter (CPU run); the integration test against HF Hub is the only task that requires the published model.

@@ -1,6 +1,6 @@
 # Phase 3 — Fine-tune
 
-This phase produces the trained `resumefit-distilbert-lora` model. Two paths:
+This phase produces the trained `resumora-ai-distilbert-lora` model. Two paths:
 
 - **Local smoke test** — runs on a Mac CPU in under a minute. Verifies the pipeline boots and the head receives gradients. *No real learning happens.*
 - **Colab full run** — runs on a free T4 GPU in 30-60 minutes. Produces the model that ends up on HF Hub.
@@ -36,8 +36,8 @@ Open `notebooks/01_train_on_colab.ipynb` in Colab (Runtime -> GPU T4). Set the t
 
 ```
 HF_USER = "your-username"
-HF_DATASET_REPO = f"{HF_USER}/resumefit-dataset"
-HF_MODEL_REPO = f"{HF_USER}/resumefit-distilbert-lora"
+HF_DATASET_REPO = f"{HF_USER}/resumora-ai-dataset"
+HF_MODEL_REPO = f"{HF_USER}/resumora-ai-distilbert-lora"
 GITHUB_REPO_URL = "https://github.com/your-username/AI-Pipeline.git"
 ```
 
@@ -72,4 +72,4 @@ On Colab, `./mlruns/` lives inside the runtime and dies with it. The notebook's 
 
 ## Where the model lands
 
-Default repo: `<HF_USER>/resumefit-distilbert-lora`. The auto-generated model card includes the score-range disclosure, intended-use disclaimer ("not for hiring decisions"), synthetic-data provenance, gold-set metrics, limitations, and the training config. The license is `apache-2.0` (matches DistilBERT base).
+Default repo: `<HF_USER>/resumora-ai-distilbert-lora`. The auto-generated model card includes the score-range disclosure, intended-use disclaimer ("not for hiring decisions"), synthetic-data provenance, gold-set metrics, limitations, and the training config. The license is `apache-2.0` (matches DistilBERT base).

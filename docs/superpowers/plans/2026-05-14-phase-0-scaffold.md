@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Stand up the ResumeFit monorepo skeleton — a `uv` Python workspace plus a Next.js app — so `make dev` boots the FastAPI backend and the Next.js frontend together, and `make test` passes.
+**Goal:** Stand up the Resumora AI monorepo skeleton — a `uv` Python workspace plus a Next.js app — so `make dev` boots the FastAPI backend and the Next.js frontend together, and `make test` passes.
 
 **Architecture:** A polyglot monorepo with `apps/` (deployable apps) and `packages/` (shared Python libraries). A `uv` workspace links the Python members (`apps/api`, `packages/pipeline`); the Next.js app in `apps/web` is self-contained. A root `Makefile` is the single command surface; `honcho` runs the two dev servers from a `Procfile`. No Turborepo — the repo is Python-majority with one JS app.
 
@@ -48,7 +48,7 @@ Create `pyproject.toml`:
 [project]
 name = "ai-pipeline"
 version = "0.1.0"
-description = "ResumeFit — an open-source resume/job-matching AI pipeline"
+description = "Resumora AI — an open-source resume/job-matching AI pipeline"
 requires-python = ">=3.12"
 
 [tool.uv]
@@ -112,7 +112,7 @@ data/generated/
 Create `README.md`:
 
 ```markdown
-# ResumeFit
+# Resumora AI
 
 An open-source AI pipeline that scores a resume against a job description,
 explains the fit, and suggests bullet-point rewrites.
@@ -169,7 +169,7 @@ Create `packages/pipeline/pyproject.toml`:
 [project]
 name = "pipeline"
 version = "0.1.0"
-description = "ResumeFit pipeline library: ingestion, extraction, scoring, similarity, reasoning"
+description = "Resumora AI pipeline library: ingestion, extraction, scoring, similarity, reasoning"
 requires-python = ">=3.12"
 dependencies = []
 
@@ -257,7 +257,7 @@ Create `apps/api/pyproject.toml`. The `pipeline = { workspace = true }` source i
 [project]
 name = "api"
 version = "0.1.0"
-description = "ResumeFit FastAPI backend"
+description = "Resumora AI FastAPI backend"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.115",
@@ -312,7 +312,7 @@ Create `apps/api/src/api/main.py`:
 ```python
 from fastapi import FastAPI
 
-app = FastAPI(title="ResumeFit API")
+app = FastAPI(title="Resumora AI API")
 
 
 @app.get("/health")

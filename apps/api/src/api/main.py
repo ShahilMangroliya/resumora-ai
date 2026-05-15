@@ -32,7 +32,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     yield
 
 
-app = FastAPI(title="ResumeFit API", lifespan=lifespan)
+app = FastAPI(title="Resumora AI API", lifespan=lifespan)
 
 
 _settings = load_settings()

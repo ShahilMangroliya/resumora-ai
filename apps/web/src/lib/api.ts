@@ -24,7 +24,7 @@ export async function analyzeResume({ resume, jobDescription }: AnalyzeInput): P
   try {
     response = await fetch(`${API_URL}/analyze`, { method: "POST", body });
   } catch {
-    throw new ApiError(0, "Could not reach the ResumeFit API. Is the backend running?");
+    throw new ApiError(0, "Could not reach the Resumora AI API. Is the backend running?");
   }
 
   if (!response.ok) {

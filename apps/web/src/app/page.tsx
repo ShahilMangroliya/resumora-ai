@@ -5,7 +5,7 @@ export default function Home() {
     <main className="mx-auto flex w-full max-w-4xl flex-col gap-10 px-6 py-16">
       <header className="flex flex-col gap-3">
         <span className="text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--muted)]">
-          ResumeFit
+          Resumora AI
         </span>
         <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
           Score your resume against any job description.

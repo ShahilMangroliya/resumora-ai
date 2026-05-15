@@ -35,13 +35,13 @@ def build_model_card(
 
     body = dedent(
         f"""\
-        # ResumeFit — DistilBERT + LoRA fit classifier
+        # Resumora AI — DistilBERT + LoRA fit classifier
 
         Fine-tuned classifier that scores a (resume, job description) pair as one of
         `weak` / `partial` / `strong` fit, and produces a continuous score in `[20, 85]`
         via the expected value `softmax(logits) · [20, 55, 85]`.
 
-        Built as the model artifact for the [ResumeFit](https://github.com/) portfolio
+        Built as the model artifact for the [Resumora AI](https://github.com/) portfolio
         project. **Not for hiring decisions.**
 
         ## Score range
@@ -132,7 +132,7 @@ def push_model(
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="training.publish.model")
-    parser.add_argument("--repo", required=True, help="HF model repo id, e.g. user/resumefit-distilbert-lora")
+    parser.add_argument("--repo", required=True, help="HF model repo id, e.g. user/resumora-ai-distilbert-lora")
     parser.add_argument("--model-dir", type=Path, required=True, help="local model dir produced by training")
     parser.add_argument("--metrics-json", type=Path, required=True, help="final_metrics.json or eval report json")
     parser.add_argument("--dataset-repo", required=True, help="HF dataset repo id used during training")

@@ -1,7 +1,7 @@
 [project]
 name = "training"
 version = "0.1.0"
-description = "ResumeFit training: synthetic data generation, gold set, HF Hub publishing"
+description = "Resumora AI training: synthetic data generation, gold set, HF Hub publishing"
 requires-python = ">=3.12"
 dependencies = [
     "pipeline",

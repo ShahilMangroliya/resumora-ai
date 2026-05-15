@@ -1,7 +1,7 @@
 [project]
 name = "pipeline"
 version = "0.1.0"
-description = "ResumeFit pipeline library: ingestion, extraction, scoring, similarity, reasoning"
+description = "Resumora AI pipeline library: ingestion, extraction, scoring, similarity, reasoning"
 requires-python = ">=3.12"
 dependencies = [
     "pypdf>=5.0",

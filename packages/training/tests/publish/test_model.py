@@ -11,7 +11,7 @@ from training.publish import model as publish_model
 def test_build_model_card_includes_required_disclosures():
     card = publish_model.build_model_card(
         base_model="distilbert-base-uncased",
-        dataset_repo="alice/resumefit-dataset",
+        dataset_repo="alice/resumora-ai-dataset",
         train_config={"num_train_epochs": 3, "seed": 42, "max_length": 512},
         eval_metrics={
             "accuracy": 0.72,
@@ -27,7 +27,7 @@ def test_build_model_card_includes_required_disclosures():
     assert "score range" in text.lower() or "[20, 85]" in text or "20-85" in text
     assert "not for hiring decisions" in text.lower()
     assert "synthetic" in text.lower()
-    assert "alice/resumefit-dataset" in text
+    assert "alice/resumora-ai-dataset" in text
     assert "ollama" in text.lower()
     assert "llama3.2:3b" in text.lower()
     assert "apache-2.0" in text.lower()
@@ -47,7 +47,7 @@ def test_push_model_calls_create_repo_and_upload_folder(tmp_path: Path, monkeypa
     card.push_to_hub = MagicMock()
 
     publish_model.push_model(
-        repo_id="alice/resumefit-distilbert-lora",
+        repo_id="alice/resumora-ai-distilbert-lora",
         model_dir=model_dir,
         model_card=card,
         hf_token="hf_test_token",
@@ -56,19 +56,19 @@ def test_push_model_calls_create_repo_and_upload_folder(tmp_path: Path, monkeypa
 
     api.create_repo.assert_called_once()
     create_kwargs = api.create_repo.call_args.kwargs
-    assert create_kwargs["repo_id"] == "alice/resumefit-distilbert-lora"
+    assert create_kwargs["repo_id"] == "alice/resumora-ai-distilbert-lora"
     assert create_kwargs["repo_type"] == "model"
     assert create_kwargs["exist_ok"] is True
 
     api.upload_folder.assert_called_once()
     upload_kwargs = api.upload_folder.call_args.kwargs
-    assert upload_kwargs["repo_id"] == "alice/resumefit-distilbert-lora"
+    assert upload_kwargs["repo_id"] == "alice/resumora-ai-distilbert-lora"
     assert upload_kwargs["repo_type"] == "model"
     assert upload_kwargs["folder_path"] == str(model_dir)
     assert upload_kwargs["commit_message"] == "phase 3 — initial release"
 
     card.push_to_hub.assert_called_once_with(
-        "alice/resumefit-distilbert-lora", token="hf_test_token"
+        "alice/resumora-ai-distilbert-lora", token="hf_test_token"
     )
 
 

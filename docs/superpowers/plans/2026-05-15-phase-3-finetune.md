@@ -109,7 +109,7 @@ outputs/
 Create `packages/training/src/training/train/__init__.py` as a placeholder; Task 8 fills in re-exports.
 
 ```python
-"""ResumeFit fine-tuning entry points.
+"""Resumora AI fine-tuning entry points.
 
 See docs/superpowers/specs/2026-05-15-phase-3-finetune-supplement.md for the
 design.
@@ -175,7 +175,7 @@ def test_train_config_is_frozen():
         learning_rate=5e-5,
         val_fraction=0.1,
         seed=42,
-        mlflow_experiment="resumefit",
+        mlflow_experiment="resumora-ai",
         run_name="test",
     )
     with pytest.raises(Exception):
@@ -272,7 +272,7 @@ def smoke_config() -> TrainConfig:
         learning_rate=5e-5,
         val_fraction=0.2,
         seed=42,
-        mlflow_experiment="resumefit",
+        mlflow_experiment="resumora-ai",
         run_name="smoke",
     )
 
@@ -291,7 +291,7 @@ def full_config() -> TrainConfig:
         learning_rate=5e-5,
         val_fraction=0.1,
         seed=42,
-        mlflow_experiment="resumefit",
+        mlflow_experiment="resumora-ai",
         run_name="full",
     )
 ```
@@ -1192,7 +1192,7 @@ def test_train_runs_end_to_end_on_a_handful_of_pairs(tmp_path: Path, monkeypatch
         learning_rate=5e-5,
         val_fraction=0.33,
         seed=42,
-        mlflow_experiment="resumefit-test",
+        mlflow_experiment="resumora-ai-test",
         run_name="integration-smoke",
     )
 
@@ -1658,7 +1658,7 @@ if __name__ == "__main__":
 Replace the contents of `packages/training/src/training/train/__init__.py`:
 
 ```python
-"""ResumeFit fine-tuning entry points.
+"""Resumora AI fine-tuning entry points.
 
 See docs/superpowers/specs/2026-05-15-phase-3-finetune-supplement.md for the
 design.
@@ -1710,7 +1710,7 @@ This module mirrors `training.publish.to_hf`'s structure but operates on a *mode
 
 - **`build_model_card(...)`** — assembles a `huggingface_hub.ModelCard` from training config, eval metrics, dataset repo URL, and the static disclosures from supplement §7.1 (intended use, score range, limitations, license).
 - **`push_model(repo_id, model_dir, model_card, hf_token, commit_message)`** — creates the repo and uploads `model_dir` + writes the card.
-- **`main(argv)`** — `python -m training.publish.model --repo user/resumefit-distilbert-lora --model-dir outputs/run/ --metrics-json outputs/run/final_metrics.json --dataset-repo user/resumefit-dataset`.
+- **`main(argv)`** — `python -m training.publish.model --repo user/resumora-ai-distilbert-lora --model-dir outputs/run/ --metrics-json outputs/run/final_metrics.json --dataset-repo user/resumora-ai-dataset`.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -1730,7 +1730,7 @@ from training.publish import model as publish_model
 def test_build_model_card_includes_required_disclosures():
     card = publish_model.build_model_card(
         base_model="distilbert-base-uncased",
-        dataset_repo="alice/resumefit-dataset",
+        dataset_repo="alice/resumora-ai-dataset",
         train_config={"num_train_epochs": 3, "seed": 42, "max_length": 512},
         eval_metrics={
             "accuracy": 0.72,
@@ -1746,7 +1746,7 @@ def test_build_model_card_includes_required_disclosures():
     assert "score range" in text.lower() or "[20, 85]" in text or "20-85" in text
     assert "not for hiring decisions" in text.lower()
     assert "synthetic" in text.lower()
-    assert "alice/resumefit-dataset" in text
+    assert "alice/resumora-ai-dataset" in text
     assert "ollama" in text.lower()
     assert "llama3.2:3b" in text.lower()
     assert "apache-2.0" in text.lower()
@@ -1766,7 +1766,7 @@ def test_push_model_calls_create_repo_and_upload_folder(tmp_path: Path, monkeypa
     card.push_to_hub = MagicMock()
 
     publish_model.push_model(
-        repo_id="alice/resumefit-distilbert-lora",
+        repo_id="alice/resumora-ai-distilbert-lora",
         model_dir=model_dir,
         model_card=card,
         hf_token="hf_test_token",
@@ -1775,19 +1775,19 @@ def test_push_model_calls_create_repo_and_upload_folder(tmp_path: Path, monkeypa
 
     api.create_repo.assert_called_once()
     create_kwargs = api.create_repo.call_args.kwargs
-    assert create_kwargs["repo_id"] == "alice/resumefit-distilbert-lora"
+    assert create_kwargs["repo_id"] == "alice/resumora-ai-distilbert-lora"
     assert create_kwargs["repo_type"] == "model"
     assert create_kwargs["exist_ok"] is True
 
     api.upload_folder.assert_called_once()
     upload_kwargs = api.upload_folder.call_args.kwargs
-    assert upload_kwargs["repo_id"] == "alice/resumefit-distilbert-lora"
+    assert upload_kwargs["repo_id"] == "alice/resumora-ai-distilbert-lora"
     assert upload_kwargs["repo_type"] == "model"
     assert upload_kwargs["folder_path"] == str(model_dir)
     assert upload_kwargs["commit_message"] == "phase 3 — initial release"
 
     card.push_to_hub.assert_called_once_with(
-        "alice/resumefit-distilbert-lora", token="hf_test_token"
+        "alice/resumora-ai-distilbert-lora", token="hf_test_token"
     )
 
 
@@ -1897,13 +1897,13 @@ def build_model_card(
 
     body = dedent(
         f"""\
-        # ResumeFit — DistilBERT + LoRA fit classifier
+        # Resumora AI — DistilBERT + LoRA fit classifier
 
         Fine-tuned classifier that scores a (resume, job description) pair as one of
         `weak` / `partial` / `strong` fit, and produces a continuous score in `[20, 85]`
         via the expected value `softmax(logits) · [20, 55, 85]`.
 
-        Built as the model artifact for the [ResumeFit](https://github.com/) portfolio
+        Built as the model artifact for the [Resumora AI](https://github.com/) portfolio
         project. **Not for hiring decisions.**
 
         ## Score range
@@ -1959,7 +1959,7 @@ def build_model_card(
         """
     )
 
-    card = ModelCard.from_template(card_data, model_id="resumefit-distilbert-lora")
+    card = ModelCard.from_template(card_data, model_id="resumora-ai-distilbert-lora")
     card.content = card_data.to_yaml() + "\n---\n\n" + body
     return card
 
@@ -1994,7 +1994,7 @@ def push_model(
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="training.publish.model")
-    parser.add_argument("--repo", required=True, help="HF model repo id, e.g. user/resumefit-distilbert-lora")
+    parser.add_argument("--repo", required=True, help="HF model repo id, e.g. user/resumora-ai-distilbert-lora")
     parser.add_argument("--model-dir", type=Path, required=True, help="local model dir produced by training")
     parser.add_argument("--metrics-json", type=Path, required=True, help="final_metrics.json or eval report json")
     parser.add_argument("--dataset-repo", required=True, help="HF dataset repo id used during training")
@@ -2066,7 +2066,7 @@ Create `notebooks/01_train_on_colab.ipynb` with this exact content:
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# ResumeFit — Fine-tune DistilBERT + LoRA on Colab\n",
+    "# Resumora AI — Fine-tune DistilBERT + LoRA on Colab\n",
     "\n",
     "This notebook is intentionally thin. It installs the repo, pulls the synthetic dataset from HF Hub, and calls `python -m training.train` with the `full` preset. The same code runs locally with the `smoke` preset.\n",
     "\n",
@@ -2085,8 +2085,8 @@ Create `notebooks/01_train_on_colab.ipynb` with this exact content:
    "outputs": [],
    "source": [
     "HF_USER = \"YOUR-USERNAME\"  # set me\n",
-    "HF_DATASET_REPO = f\"{HF_USER}/resumefit-dataset\"\n",
-    "HF_MODEL_REPO = f\"{HF_USER}/resumefit-distilbert-lora\"\n",
+    "HF_DATASET_REPO = f\"{HF_USER}/resumora-ai-dataset\"\n",
+    "HF_MODEL_REPO = f\"{HF_USER}/resumora-ai-distilbert-lora\"\n",
     "GITHUB_REPO_URL = \"https://github.com/YOUR-USERNAME/AI-Pipeline.git\"  # set me\n",
     "BRANCH = \"main\""
    ]
@@ -2307,7 +2307,7 @@ Create `docs/phase-3-finetune.md`:
 ```markdown
 # Phase 3 — Fine-tune
 
-This phase produces the trained `resumefit-distilbert-lora` model. Two paths:
+This phase produces the trained `resumora-ai-distilbert-lora` model. Two paths:
 
 - **Local smoke test** — runs on a Mac CPU in under a minute. Verifies the pipeline boots and the head receives gradients. *No real learning happens.*
 - **Colab full run** — runs on a free T4 GPU in 30-60 minutes. Produces the model that ends up on HF Hub.
@@ -2343,8 +2343,8 @@ Open `notebooks/01_train_on_colab.ipynb` in Colab (Runtime -> GPU T4). Set the t
 
 ```
 HF_USER = "your-username"
-HF_DATASET_REPO = f"{HF_USER}/resumefit-dataset"
-HF_MODEL_REPO = f"{HF_USER}/resumefit-distilbert-lora"
+HF_DATASET_REPO = f"{HF_USER}/resumora-ai-dataset"
+HF_MODEL_REPO = f"{HF_USER}/resumora-ai-distilbert-lora"
 GITHUB_REPO_URL = "https://github.com/your-username/AI-Pipeline.git"
 ```
 
@@ -2379,7 +2379,7 @@ On Colab, `./mlruns/` lives inside the runtime and dies with it. The notebook's 
 
 ## Where the model lands
 
-Default repo: `<HF_USER>/resumefit-distilbert-lora`. The auto-generated model card includes the score-range disclosure, intended-use disclaimer ("not for hiring decisions"), synthetic-data provenance, gold-set metrics, limitations, and the training config. The license is `apache-2.0` (matches DistilBERT base).
+Default repo: `<HF_USER>/resumora-ai-distilbert-lora`. The auto-generated model card includes the score-range disclosure, intended-use disclaimer ("not for hiring decisions"), synthetic-data provenance, gold-set metrics, limitations, and the training config. The license is `apache-2.0` (matches DistilBERT base).
 ```
 
 - [ ] **Step 2: Add a Phase 3 entry to the README**

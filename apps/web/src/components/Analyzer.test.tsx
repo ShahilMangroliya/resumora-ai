@@ -140,12 +140,12 @@ describe("Analyzer", () => {
 
   it("renders an error banner when analyzeResume throws an ApiError", async () => {
     analyzeResumeMock.mockRejectedValueOnce(
-      new ApiErrorClass(0, "Could not reach the ResumeFit API. Is the backend running?"),
+      new ApiErrorClass(0, "Could not reach the Resumora AI API. Is the backend running?"),
     );
     render(<Analyzer />);
     await fillFormAndSubmit();
 
     const alert = await screen.findByRole("alert");
-    expect(alert).toHaveTextContent(/could not reach the resumefit api/i);
+    expect(alert).toHaveTextContent(/could not reach the resumora ai api/i);
   });
 });

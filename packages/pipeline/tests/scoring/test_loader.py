@@ -80,14 +80,14 @@ def test_load_scorer_artifacts_falls_back_to_base_tokenizer(tmp_path: Path):
 def test_load_scorer_artifacts_from_hub():
     """Smoke-load the published Phase 3 model.
 
-    Requires `RESUMEFIT_SCORER_REPO` env var pointing at the published model.
+    Requires `RESUMORA_AI_SCORER_REPO` env var pointing at the published model.
     Skipped by default; run with `pytest -m integration`.
     """
     import os
 
-    repo = os.environ.get("RESUMEFIT_SCORER_REPO")
+    repo = os.environ.get("RESUMORA_AI_SCORER_REPO")
     if not repo:
-        pytest.skip("RESUMEFIT_SCORER_REPO not set")
+        pytest.skip("RESUMORA_AI_SCORER_REPO not set")
     model, tokenizer = load_scorer_artifacts(
         repo_id_or_path=repo,
         base_model="distilbert-base-uncased",

@@ -15,7 +15,7 @@ def run_analysis(
     jd_text: str,
     pipeline: Pipeline,
 ) -> AnalyzeResponse:
-    """Run the five-stage ResumeFit pipeline synchronously.
+    """Run the five-stage Resumora AI pipeline synchronously.
 
     Raises:
         IngestionError: when the resume or JD cannot be ingested. The caller

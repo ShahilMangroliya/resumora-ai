@@ -1,6 +1,6 @@
 # Phase 7 — Frontend
 
-A Next.js 16 single-page UI that drives the ResumeFit pipeline through
+A Next.js 16 single-page UI that drives the Resumora AI pipeline through
 the FastAPI backend.
 
 ## What it does
@@ -14,13 +14,13 @@ the FastAPI backend.
 
 | Var | Default | Notes |
 |---|---|---|
-| `NEXT_PUBLIC_API_URL` | `http://localhost:8000` | Base URL of the ResumeFit API. |
+| `NEXT_PUBLIC_API_URL` | `http://localhost:8000` | Base URL of the Resumora AI API. |
 
 Configured per-environment via `apps/web/.env.local` (copied from
 `apps/web/.env.example`). For a deployment, set this on the hosting provider
 (Vercel project env, HF Space env, etc.).
 
-CORS on the API side is controlled by `RESUMEFIT_CORS_ORIGINS`
+CORS on the API side is controlled by `RESUMORA_AI_CORS_ORIGINS`
 (see `docs/phase-6-api.md`).
 
 ## Run locally

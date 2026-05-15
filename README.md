@@ -1,4 +1,4 @@
-# ResumeFit
+# Resumora AI
 
 An open-source AI pipeline that scores a resume against a job description,
 explains the fit, and suggests bullet-point rewrites.

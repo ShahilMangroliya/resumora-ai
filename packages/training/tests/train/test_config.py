@@ -18,7 +18,7 @@ def test_train_config_is_frozen():
         learning_rate=5e-5,
         val_fraction=0.1,
         seed=42,
-        mlflow_experiment="resumefit",
+        mlflow_experiment="resumora-ai",
         run_name="test",
     )
     with pytest.raises(Exception):

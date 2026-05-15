@@ -25,7 +25,7 @@ job_doc = ingest_job(jd_text)
 resume_profile = extract_resume_profile(resume_doc)
 job_profile = extract_job_profile(job_doc)
 
-scorer = Scorer.from_pretrained("USER/resumefit-distilbert-lora", device="cpu")
+scorer = Scorer.from_pretrained("USER/resumora-ai-distilbert-lora", device="cpu")
 matcher = SkillMatcher.from_pretrained(device="cpu")
 
 score = scorer.score(resume_doc.raw_text, job_doc.raw_text)

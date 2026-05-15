@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ResumeFit",
+  title: "Resumora AI",
   description: "Score a resume against a job description and improve it.",
 };
 

@@ -53,7 +53,7 @@ def smoke_config() -> TrainConfig:
         learning_rate=5e-5,
         val_fraction=0.2,
         seed=42,
-        mlflow_experiment="resumefit",
+        mlflow_experiment="resumora-ai",
         run_name="smoke",
     )
 
@@ -72,6 +72,6 @@ def full_config() -> TrainConfig:
         learning_rate=5e-5,
         val_fraction=0.1,
         seed=42,
-        mlflow_experiment="resumefit",
+        mlflow_experiment="resumora-ai",
         run_name="full",
     )

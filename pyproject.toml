@@ -1,7 +1,7 @@
 [project]
-name = "ai-pipeline"
+name = "resumora-ai"
 version = "0.1.0"
-description = "ResumeFit — an open-source resume/job-matching AI pipeline"
+description = "Resumora AI — an open-source resume/job-matching AI pipeline"
 requires-python = ">=3.12"
 
 [tool.uv]

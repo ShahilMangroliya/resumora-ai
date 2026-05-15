@@ -1,4 +1,4 @@
-# ResumeFit — AI Pipeline Design
+# Resumora AI — AI Pipeline Design
 
 **Date:** 2026-05-14
 **Status:** Approved (brainstorming complete)
@@ -6,7 +6,7 @@
 
 ## 1. Overview
 
-ResumeFit is an AI pipeline that takes a `(resume, job description)` pair and returns:
+Resumora AI is an AI pipeline that takes a `(resume, job description)` pair and returns:
 
 - a **fit score** from 0–100
 - the **top 3 reasons** for that score (matched / missing skills, experience gaps)

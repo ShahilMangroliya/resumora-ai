@@ -21,7 +21,7 @@ from pipeline.similarity import SkillMatcher
 from pipeline.extraction import extract_resume_profile, extract_job_profile
 from pipeline.ingestion import ingest_resume_bytes, ingest_job_text
 
-scorer = Scorer.from_pretrained("USER/resumefit-distilbert-lora", device="cpu")
+scorer = Scorer.from_pretrained("USER/resumora-ai-distilbert-lora", device="cpu")
 matcher = SkillMatcher.from_pretrained(device="cpu")  # MiniLM by default
 
 resume_doc = ingest_resume_bytes(resume_pdf_bytes, filename="resume.pdf")
@@ -71,9 +71,9 @@ uv run pytest packages/pipeline/tests/scoring packages/pipeline/tests/similarity
 uv run pytest packages/pipeline/tests/scoring packages/pipeline/tests/similarity -m integration -v
 ```
 
-The Hub integration test needs `RESUMEFIT_SCORER_REPO` pointing at the published Phase 3 model:
+The Hub integration test needs `RESUMORA_AI_SCORER_REPO` pointing at the published Phase 3 model:
 
 ```bash
-RESUMEFIT_SCORER_REPO=USER/resumefit-distilbert-lora \
+RESUMORA_AI_SCORER_REPO=USER/resumora-ai-distilbert-lora \
   uv run pytest packages/pipeline/tests/scoring -m integration -v
 ```

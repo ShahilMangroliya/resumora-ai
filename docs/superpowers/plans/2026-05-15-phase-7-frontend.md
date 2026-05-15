@@ -31,7 +31,7 @@ Files created or modified in this phase:
 - `apps/web/src/lib/env.ts` — **create**: read `NEXT_PUBLIC_API_URL` once with a default.
 - `apps/web/src/lib/types.ts` — **create**: TypeScript mirrors of `AnalyzeResponse` and nested models.
 - `apps/web/src/lib/api.ts` — **create**: `analyzeResume({resume, jobDescription})` and `ApiError`.
-- `apps/web/src/app/layout.tsx` — **modify**: replace boilerplate metadata with ResumeFit title/description.
+- `apps/web/src/app/layout.tsx` — **modify**: replace boilerplate metadata with Resumora AI title/description.
 - `apps/web/src/app/page.tsx` — **rewrite**: thin server-component shell that renders the client `<Analyzer>`.
 - `apps/web/src/components/Analyzer.tsx` — **create**: top-level client component owning all state and the fetch call.
 - `apps/web/src/components/AnalyzeForm.tsx` — **create**: file input + JD textarea + submit; calls a parent-supplied `onSubmit`.
@@ -42,7 +42,7 @@ Files created or modified in this phase:
 - `apps/web/src/components/WarningsBanner.tsx` — **create**: amber banner listing any `warnings[]`.
 - `apps/web/src/components/EmptyState.tsx` — **create**: pre-submit hint copy.
 - `apps/web/src/app/globals.css` — **modify**: extend the existing `@theme` block with brand colors for weak/partial/strong + readable body font stack.
-- `apps/web/README.md` — **rewrite**: replace `create-next-app` boilerplate with ResumeFit-specific instructions.
+- `apps/web/README.md` — **rewrite**: replace `create-next-app` boilerplate with Resumora AI-specific instructions.
 - `docs/phase-7-frontend.md` — **create**: user-facing Phase 7 guide.
 - `README.md` — **modify**: add Phase 7 entry.
 
@@ -59,7 +59,7 @@ Files created or modified in this phase:
 - [ ] **Step 1: Create `apps/web/.env.example`**
 
 ```
-# Base URL of the ResumeFit FastAPI backend.
+# Base URL of the Resumora AI FastAPI backend.
 # Local dev default matches `make dev` (Procfile binds the API to port 8000).
 NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
@@ -75,9 +75,9 @@ Expected: prints the path (ignored) — Next.js's standard `.gitignore` already 
 Replace the entire file with:
 
 ````markdown
-# ResumeFit — Web
+# Resumora AI — Web
 
-Next.js 16 frontend for ResumeFit. Talks to the FastAPI backend in
+Next.js 16 frontend for Resumora AI. Talks to the FastAPI backend in
 `apps/api` via `POST /analyze`.
 
 ## Env
@@ -91,7 +91,7 @@ cp .env.example .env.local
 
 | Var | Default | Notes |
 |---|---|---|
-| `NEXT_PUBLIC_API_URL` | `http://localhost:8000` | Base URL of the ResumeFit API. |
+| `NEXT_PUBLIC_API_URL` | `http://localhost:8000` | Base URL of the Resumora AI API. |
 
 ## Run
 
@@ -136,7 +136,7 @@ with:
 
 ```tsx
 export const metadata: Metadata = {
-  title: "ResumeFit",
+  title: "Resumora AI",
   description: "Score a resume against a job description and improve it.",
 };
 ```
@@ -276,7 +276,7 @@ export async function analyzeResume({ resume, jobDescription }: AnalyzeInput): P
   try {
     response = await fetch(`${API_URL}/analyze`, { method: "POST", body });
   } catch (cause) {
-    throw new ApiError(0, "Could not reach the ResumeFit API. Is the backend running?");
+    throw new ApiError(0, "Could not reach the Resumora AI API. Is the backend running?");
   }
 
   if (!response.ok) {
@@ -929,7 +929,7 @@ export default function Home() {
     <main className="mx-auto flex w-full max-w-4xl flex-col gap-10 px-6 py-16">
       <header className="flex flex-col gap-3">
         <span className="text-xs font-medium uppercase tracking-[0.2em] text-[color:var(--muted)]">
-          ResumeFit
+          Resumora AI
         </span>
         <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
           Score your resume against any job description.
@@ -956,7 +956,7 @@ Expected: PASS.
 
 ```bash
 git add apps/web/src/app/page.tsx
-git commit -m "feat(web): replace home page with ResumeFit shell and Analyzer"
+git commit -m "feat(web): replace home page with Resumora AI shell and Analyzer"
 ```
 
 ---
@@ -984,7 +984,7 @@ Expected: a successful build, no TypeScript errors, no static-analysis errors.
 
 From the repo root, in one shell: `make dev`
 
-Expected: API on <http://localhost:8000/health> returns `{"status":"ok"}`; the web app at <http://localhost:3000> renders the ResumeFit shell with the form.
+Expected: API on <http://localhost:8000/health> returns `{"status":"ok"}`; the web app at <http://localhost:3000> renders the Resumora AI shell with the form.
 
 - [ ] **Step 4: Golden-path verification (Ollama up, scorer up)**
 
@@ -1015,7 +1015,7 @@ Restart Ollama afterwards: `ollama serve` (or whatever the user runs locally).
 - Empty JD: Submit button is disabled.
 - No file: Submit button is disabled.
 - Submit a `.zip` or other unsupported extension: API returns 400; the page shows the red error banner with the parser's message.
-- API not running: kill the API process, submit, verify the banner reads "Could not reach the ResumeFit API. Is the backend running?" Restart the API.
+- API not running: kill the API process, submit, verify the banner reads "Could not reach the Resumora AI API. Is the backend running?" Restart the API.
 
 - [ ] **Step 7: Commit any cleanup that surfaced during verification**
 
@@ -1039,7 +1039,7 @@ git commit -m "chore(web): post-verification cleanup" # only if there are change
 ```markdown
 # Phase 7 — Frontend
 
-A Next.js 16 single-page UI that drives the ResumeFit pipeline through
+A Next.js 16 single-page UI that drives the Resumora AI pipeline through
 the FastAPI backend.
 
 ## What it does
@@ -1053,13 +1053,13 @@ the FastAPI backend.
 
 | Var | Default | Notes |
 |---|---|---|
-| `NEXT_PUBLIC_API_URL` | `http://localhost:8000` | Base URL of the ResumeFit API. |
+| `NEXT_PUBLIC_API_URL` | `http://localhost:8000` | Base URL of the Resumora AI API. |
 
 Configured per-environment via `apps/web/.env.local` (copied from
 `apps/web/.env.example`). For a deployment, set this on the hosting provider
 (Vercel project env, HF Space env, etc.).
 
-CORS on the API side is controlled by `RESUMEFIT_CORS_ORIGINS`
+CORS on the API side is controlled by `RESUMORA_AI_CORS_ORIGINS`
 (see `docs/phase-6-api.md`).
 
 ## Run locally

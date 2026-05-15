@@ -1,6 +1,6 @@
-# ResumeFit — Web
+# Resumora AI — Web
 
-Next.js 16 frontend for ResumeFit. Talks to the FastAPI backend in
+Next.js 16 frontend for Resumora AI. Talks to the FastAPI backend in
 `apps/api` via `POST /analyze`.
 
 ## Env
@@ -14,7 +14,7 @@ cp .env.example .env.local
 
 | Var | Default | Notes |
 |---|---|---|
-| `NEXT_PUBLIC_API_URL` | `http://localhost:8000` | Base URL of the ResumeFit API. |
+| `NEXT_PUBLIC_API_URL` | `http://localhost:8000` | Base URL of the Resumora AI API. |
 
 ## Run
 

@@ -35,7 +35,7 @@ def push_dataset(
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="training.publish.to_hf")
-    parser.add_argument("--repo", required=True, help="HF dataset repo id, e.g. user/resumefit")
+    parser.add_argument("--repo", required=True, help="HF dataset repo id, e.g. user/resumora-ai")
     parser.add_argument("--folder", type=Path, required=True, help="local folder to upload")
     parser.add_argument(
         "--token",

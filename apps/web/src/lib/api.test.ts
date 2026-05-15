@@ -85,7 +85,7 @@ describe("analyzeResume", () => {
     await expect(analyzeResume({ resume: file, jobDescription: "jd" })).rejects.toMatchObject({
       name: "ApiError",
       status: 0,
-      message: "Could not reach the ResumeFit API. Is the backend running?",
+      message: "Could not reach the Resumora AI API. Is the backend running?",
     });
   });
 

@@ -70,24 +70,24 @@ Score a resume against a job description and explain the fit.
 
 ## Configuration
 
-All env vars are prefixed `RESUMEFIT_`.
+All env vars are prefixed `RESUMORA_AI_`.
 
 | Var | Default | Notes |
 |---|---|---|
-| `RESUMEFIT_SCORER_REPO` | `distilbert-base-uncased` | HF Hub repo for the fine-tuned scorer. Point this at your Phase 3 model. |
-| `RESUMEFIT_SCORER_DEVICE` | `cpu` | `cpu` / `cuda` / `mps`. |
-| `RESUMEFIT_MATCHER_DEVICE` | `cpu` | Sentence-transformer device. |
-| `RESUMEFIT_OLLAMA_URL` | `http://localhost:11434` | Where Ollama is reachable. |
-| `RESUMEFIT_OLLAMA_MODEL` | `llama3.2:3b` | Tag for extraction + reasoning. |
-| `RESUMEFIT_OLLAMA_TIMEOUT` | `30.0` | Per-call timeout (seconds). The library default is 60s; the API tightens this for better UX. |
-| `RESUMEFIT_CORS_ORIGINS` | `http://localhost:3000` | Comma-separated origins for CORS. |
-| `RESUMEFIT_WARMUP_ON_STARTUP` | `false` | Production: set to `true` so model load failure surfaces at startup. Tests leave this false. |
+| `RESUMORA_AI_SCORER_REPO` | `distilbert-base-uncased` | HF Hub repo for the fine-tuned scorer. Point this at your Phase 3 model. |
+| `RESUMORA_AI_SCORER_DEVICE` | `cpu` | `cpu` / `cuda` / `mps`. |
+| `RESUMORA_AI_MATCHER_DEVICE` | `cpu` | Sentence-transformer device. |
+| `RESUMORA_AI_OLLAMA_URL` | `http://localhost:11434` | Where Ollama is reachable. |
+| `RESUMORA_AI_OLLAMA_MODEL` | `llama3.2:3b` | Tag for extraction + reasoning. |
+| `RESUMORA_AI_OLLAMA_TIMEOUT` | `30.0` | Per-call timeout (seconds). The library default is 60s; the API tightens this for better UX. |
+| `RESUMORA_AI_CORS_ORIGINS` | `http://localhost:3000` | Comma-separated origins for CORS. |
+| `RESUMORA_AI_WARMUP_ON_STARTUP` | `false` | Production: set to `true` so model load failure surfaces at startup. Tests leave this false. |
 
 ## Timeouts
 
 - Extraction and reasoning inherit `OllamaClient`'s configured timeout (default 30s in the API).
 - Scoring, similarity, and ingestion are local CPU and have no explicit timeout.
-- Worst-case wall time when Ollama hangs: `2 × extraction + 1 × reasoning` ≈ 90 s. To tighten further, lower `RESUMEFIT_OLLAMA_TIMEOUT`.
+- Worst-case wall time when Ollama hangs: `2 × extraction + 1 × reasoning` ≈ 90 s. To tighten further, lower `RESUMORA_AI_OLLAMA_TIMEOUT`.
 
 ## Run locally
 
@@ -104,8 +104,8 @@ uv run --package api uvicorn api.main:app --reload --port 8000
 For a deployed-style boot (warm singletons at startup):
 
 ```bash
-RESUMEFIT_WARMUP_ON_STARTUP=true \
-RESUMEFIT_SCORER_REPO=USER/resumefit-distilbert-lora \
+RESUMORA_AI_WARMUP_ON_STARTUP=true \
+RESUMORA_AI_SCORER_REPO=USER/resumora-ai-distilbert-lora \
 uv run --package api uvicorn api.main:app --port 8000
 ```
 

@@ -107,7 +107,7 @@ def test_train_runs_end_to_end_on_a_handful_of_pairs(tmp_path: Path, monkeypatch
         learning_rate=5e-5,
         val_fraction=0.33,
         seed=42,
-        mlflow_experiment="resumefit-test",
+        mlflow_experiment="resumora-ai-test",
         run_name="integration-smoke",
     )
 

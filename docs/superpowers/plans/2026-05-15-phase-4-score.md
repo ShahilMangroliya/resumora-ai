@@ -18,7 +18,7 @@
 - **Embedding skill phrases are lower-cased and stripped, not de-punctuated** — `node.js` stays `node.js`.
 - **Integration tests gated** — anything that touches a real HF Hub model is `@pytest.mark.integration`, consistent with the Ollama + HF Hub pattern from Phases 2 and 3.
 
-> **Prerequisite:** A Phase 3 model exists either on HF Hub (`<HF_USERNAME>/resumefit-distilbert-lora`) or as a locally saved adapter directory. Phase 4 development can proceed against a local smoke-trained adapter. The only step that *requires* the Hub model is the gated integration test (Task 5 step 9).
+> **Prerequisite:** A Phase 3 model exists either on HF Hub (`<HF_USERNAME>/resumora-ai-distilbert-lora`) or as a locally saved adapter directory. Phase 4 development can proceed against a local smoke-trained adapter. The only step that *requires* the Hub model is the gated integration test (Task 5 step 9).
 
 > **Note on PyTorch inference-mode method:** As in the Phase 3 plan, this plan calls `model.train(False)` everywhere — never the shorter-named method. Identical behavior; avoids a token that a security linter could confuse with Python's builtin code-execution function.
 
@@ -509,14 +509,14 @@ def test_load_scorer_artifacts_falls_back_to_base_tokenizer(tmp_path: Path):
 def test_load_scorer_artifacts_from_hub():
     """Smoke-load the published Phase 3 model.
 
-    Requires HF_USERNAME env var and a model at <HF_USERNAME>/resumefit-distilbert-lora.
+    Requires HF_USERNAME env var and a model at <HF_USERNAME>/resumora-ai-distilbert-lora.
     Skipped by default; run with `pytest -m integration`.
     """
     import os
 
-    repo = os.environ.get("RESUMEFIT_SCORER_REPO")
+    repo = os.environ.get("RESUMORA_AI_SCORER_REPO")
     if not repo:
-        pytest.skip("RESUMEFIT_SCORER_REPO not set")
+        pytest.skip("RESUMORA_AI_SCORER_REPO not set")
     model, tokenizer = load_scorer_artifacts(
         repo_id_or_path=repo,
         base_model="distilbert-base-uncased",
@@ -1419,7 +1419,7 @@ from pipeline.similarity import SkillMatcher
 from pipeline.extraction import extract_resume_profile, extract_job_profile
 from pipeline.ingestion import ingest_resume_bytes, ingest_job_text
 
-scorer = Scorer.from_pretrained("USER/resumefit-distilbert-lora", device="cpu")
+scorer = Scorer.from_pretrained("USER/resumora-ai-distilbert-lora", device="cpu")
 matcher = SkillMatcher.from_pretrained(device="cpu")  # MiniLM by default
 
 resume_doc = ingest_resume_bytes(resume_pdf_bytes, filename="resume.pdf")
@@ -1469,10 +1469,10 @@ uv run pytest packages/pipeline/tests/scoring packages/pipeline/tests/similarity
 uv run pytest packages/pipeline/tests/scoring packages/pipeline/tests/similarity -m integration -v
 ```
 
-The Hub integration test needs `RESUMEFIT_SCORER_REPO` pointing at the published Phase 3 model:
+The Hub integration test needs `RESUMORA_AI_SCORER_REPO` pointing at the published Phase 3 model:
 
 ```bash
-RESUMEFIT_SCORER_REPO=USER/resumefit-distilbert-lora \
+RESUMORA_AI_SCORER_REPO=USER/resumora-ai-distilbert-lora \
   uv run pytest packages/pipeline/tests/scoring -m integration -v
 ```
 ```

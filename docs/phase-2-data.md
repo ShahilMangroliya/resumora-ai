@@ -66,7 +66,7 @@ This step is **not** automated. It uses your personal `HF_TOKEN`:
 ```bash
 export HF_TOKEN=hf_xxxxx  # from https://huggingface.co/settings/tokens
 uv run python -m training.publish.to_hf \
-    --repo <your-username>/resumefit-dataset \
+    --repo <your-username>/resumora-ai-dataset \
     --folder data \
     --message "phase 2 — initial dataset"
 ```

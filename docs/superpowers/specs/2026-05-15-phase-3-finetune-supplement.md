@@ -118,7 +118,7 @@ Before each training run, a one-line stats assertion checks that the synthetic t
 
 A new `training.publish.model` module pushes the trained adapter and the auto-generated model card to HF Hub. It mirrors the structure of the existing dataset publisher (`training.publish.to_hf`) but builds on `huggingface_hub.ModelCard` rather than dataset-upload primitives.
 
-**Default repo name:** `<HF_USERNAME>/resumefit-distilbert-lora`.
+**Default repo name:** `<HF_USERNAME>/resumora-ai-distilbert-lora`.
 
 **License:** `apache-2.0` — matches the DistilBERT base.
 

@@ -17,6 +17,7 @@ node_modules/
 # Env
 .env
 .env.local
+!.env.example
 
 # MLflow
 mlruns/

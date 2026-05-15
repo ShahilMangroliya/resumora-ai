@@ -23,3 +23,6 @@ mlruns/
 
 # Generated data
 data/generated/
+
+# Phase 2 — synthetic generation outputs
+data/synthetic/*.jsonl

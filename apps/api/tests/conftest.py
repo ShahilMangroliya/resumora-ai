@@ -4,12 +4,21 @@ import types
 from dataclasses import dataclass
 
 import pytest
+from api.dependencies import reset_singletons
 from pipeline.extraction.errors import ExtractionError
 from pipeline.extraction.models import Experience, JobProfile, ResumeProfile
 from pipeline.reasoning.errors import ReasoningError
 from pipeline.reasoning.models import BulletRewrite, Reason, ReasoningResult
 from pipeline.scoring.models import ScoreResult
 from pipeline.similarity.models import SkillMatch, SkillMatchReport
+
+
+@pytest.fixture(autouse=True)
+def _clear_singletons_between_tests():
+    """Reset lru_cache singletons so direct getter calls cannot leak state across tests."""
+    reset_singletons()
+    yield
+    reset_singletons()
 
 _RESUME_TEXT = (
     "Jane Doe\n"

@@ -30,4 +30,6 @@ make test
 
 ## Phases
 
-- **Phase 2 — data layer:** see [docs/phase-2-data.md](docs/phase-2-data.md) for the extraction module, synthetic pair generator, gold seed, and the HF Hub publish step.
+- **Phase 0 — scaffold:** [plan](docs/superpowers/plans/2026-05-14-phase-0-scaffold.md).
+- **Phase 1 — ingestion:** [plan](docs/superpowers/plans/2026-05-14-phase-1-ingestion.md).
+- **Phase 2 — data layer:** [plan](docs/superpowers/plans/2026-05-15-phase-2-data.md), [guide](docs/phase-2-data.md).

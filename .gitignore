@@ -19,6 +19,10 @@ node_modules/
 .env.local
 !.env.example
 
+# Personal scratch files at repo root (resumes, sample inputs)
+/*.pdf
+/*.docx
+
 # MLflow
 mlruns/
 

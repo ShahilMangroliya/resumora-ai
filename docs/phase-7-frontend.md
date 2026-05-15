@@ -56,11 +56,20 @@ Boots the FastAPI API on :8000 and the Next.js app on :3000.
 
 ## Verification
 
-There is no JS test framework in Phase 7 — per the master spec §8 the frontend
-relies on:
-
+- `npm test` — Vitest + jsdom + React Testing Library. Covers the API client
+  (success, parsed `detail` on 4xx, generic message on non-JSON error body,
+  network-failure ApiError) and the result panels' branch logic (empty-state,
+  partial-result, warnings banner, conditional sections). Also covers the
+  `Analyzer` submit flow with a mocked `analyzeResume`.
 - `npx tsc --noEmit` — strict type-check.
 - `npm run lint` — ESLint.
 - `npm run build` — production build.
 - Manual browser verification on the golden path and partial-result edge cases
   (see the Phase 7 plan, Task 13).
+
+### Why `fireEvent.submit` and not `userEvent.click` in tests
+
+`userEvent.click` on a `type="submit"` button does not reliably fire the form's
+`submit` event under React 19 + jsdom. The `Analyzer` test submits via
+`fireEvent.submit(form)` instead. This is documented inline in
+`Analyzer.test.tsx`.

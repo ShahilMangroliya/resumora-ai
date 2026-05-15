@@ -8,10 +8,11 @@ requires-python = ">=3.12"
 package = false
 
 [tool.uv.workspace]
-members = ["packages/pipeline", "apps/api"]
+members = ["packages/pipeline", "packages/training", "apps/api"]
 
 [tool.uv.sources]
 pipeline = { workspace = true }
+training = { workspace = true }
 
 [dependency-groups]
 dev = [
@@ -24,7 +25,10 @@ dev = [
 
 [tool.pytest.ini_options]
 testpaths = ["apps", "packages"]
-addopts = "--import-mode=importlib"
+addopts = "--import-mode=importlib -m 'not integration'"
+markers = [
+    "integration: tests that require a live Ollama server (skipped by default; run with -m integration)",
+]
 
 [tool.ruff]
 line-length = 100

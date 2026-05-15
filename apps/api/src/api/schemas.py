@@ -15,7 +15,9 @@ class AnalyzeResponse(BaseModel):
     `warnings` entry explaining which downstream stages were skipped.
     """
 
-    score: ScoreResult
+    score: ScoreResult = Field(
+        description="Fit score (0–100) with predicted label and class probabilities.",
+    )
     skill_report: SkillMatchReport | None = Field(
         default=None,
         description="Skill-match report; null when extraction failed.",

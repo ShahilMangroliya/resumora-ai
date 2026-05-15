@@ -29,9 +29,7 @@ def test_generate_pair_returns_validated_pair(fake_ollama):
 
 
 def test_generate_pair_passes_role_seniority_and_label_to_prompt(fake_ollama):
-    client = fake_ollama(
-        [{"resume_text": "r", "jd_text": "j"}]
-    )
+    client = fake_ollama([{"resume_text": "r", "jd_text": "j"}])
     role = get_role("data-analyst")
     generate_pair(role, "senior", "weak", client=client, seed=7)
     prompt = client.seen_prompts[0]

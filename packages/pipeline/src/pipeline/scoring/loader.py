@@ -45,9 +45,7 @@ def load_scorer_artifacts(
         base = AutoModelForSequenceClassification.from_pretrained(base_model, num_labels=3)
         model = PeftModel.from_pretrained(base, repo_id_or_path)
     else:
-        model = AutoModelForSequenceClassification.from_pretrained(
-            repo_id_or_path, num_labels=3
-        )
+        model = AutoModelForSequenceClassification.from_pretrained(repo_id_or_path, num_labels=3)
 
     model.to(device)
     # Inference mode (equivalent to PyTorch's shorter-named method; we use this

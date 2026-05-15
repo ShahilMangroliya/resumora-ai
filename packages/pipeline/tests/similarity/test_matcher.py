@@ -66,11 +66,13 @@ def test_match_below_threshold_counts_as_missing():
 
 
 def test_match_rate_required_only():
-    backend = _FixedBackend({
-        "python": [1, 0, 0],
-        "django": [0, 1, 0],
-        "rust": [0, 0, 1],
-    })
+    backend = _FixedBackend(
+        {
+            "python": [1, 0, 0],
+            "django": [0, 1, 0],
+            "rust": [0, 0, 1],
+        }
+    )
     matcher = SkillMatcher(backend=backend, threshold=0.55)
     report = matcher.match(_resume(["Python"]), _job(["Python", "Django"], []))
     assert report.match_rate == 0.5
@@ -119,7 +121,7 @@ def test_normalization_lowers_and_strips():
 def test_threshold_is_inclusive_at_boundary():
     # Build vectors at exact similarity = 0.55.
     a = [1.0, 0.0]
-    b = [0.55, math.sqrt(1 - 0.55 ** 2)]
+    b = [0.55, math.sqrt(1 - 0.55**2)]
     backend = _FixedBackend({"a": a, "b": b})
     matcher = SkillMatcher(backend=backend, threshold=0.55)
     report = matcher.match(_resume(["A"]), _job(["B"], []))

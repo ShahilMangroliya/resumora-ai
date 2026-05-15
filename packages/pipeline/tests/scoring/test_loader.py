@@ -2,7 +2,11 @@ from pathlib import Path
 
 import pytest
 import torch
-from transformers import DistilBertConfig, DistilBertForSequenceClassification, DistilBertTokenizerFast
+from transformers import (
+    DistilBertConfig,
+    DistilBertForSequenceClassification,
+    DistilBertTokenizerFast,
+)
 
 from pipeline.scoring.loader import load_scorer_artifacts
 

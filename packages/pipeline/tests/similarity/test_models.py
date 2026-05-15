@@ -34,7 +34,9 @@ def test_skill_match_resume_skill_may_be_empty_when_resume_has_no_skills():
 def test_skill_match_report_match_rate():
     report = SkillMatchReport(
         required_matched=[SkillMatch(jd_skill="a", resume_skill="A", similarity=0.9, matched=True)],
-        required_missing=[SkillMatch(jd_skill="b", resume_skill="x", similarity=0.1, matched=False)],
+        required_missing=[
+            SkillMatch(jd_skill="b", resume_skill="x", similarity=0.1, matched=False)
+        ],
         nice_to_have_matched=[],
         nice_to_have_missing=[],
         match_rate=0.5,

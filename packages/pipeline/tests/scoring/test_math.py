@@ -25,11 +25,13 @@ def test_softmax_rows_sum_to_one():
 
 
 def test_score_from_logits_is_bounded_to_20_85():
-    logits = np.array([
-        [10.0, 0.0, 0.0],   # weak
-        [0.0, 0.0, 10.0],   # strong
-        [0.0, 10.0, 0.0],   # partial
-    ])
+    logits = np.array(
+        [
+            [10.0, 0.0, 0.0],  # weak
+            [0.0, 0.0, 10.0],  # strong
+            [0.0, 10.0, 0.0],  # partial
+        ]
+    )
     scores = score_from_logits(logits)
     assert scores[0] < 25
     assert scores[1] > 80

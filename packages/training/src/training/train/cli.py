@@ -18,13 +18,22 @@ def _train(config: TrainConfig):
 
 
 def _run_evaluate(model_dir: Path, gold_pairs_path: Path, max_length: int):
+    from peft import PeftConfig, PeftModel
     from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
     from training.dataset.jsonl import read_pairs
     from training.train.evaluate import evaluate_against_gold, render_report
 
+    # The training runner saves a PEFT adapter, not a full model. Loading
+    # AutoModelForSequenceClassification on model_dir directly would silently
+    # rebuild the base head from random init. Pull the base from the adapter
+    # config and reattach the trained adapter on top.
+    peft_cfg = PeftConfig.from_pretrained(model_dir)
+    base = AutoModelForSequenceClassification.from_pretrained(
+        peft_cfg.base_model_name_or_path, num_labels=3,
+    )
+    model = PeftModel.from_pretrained(base, model_dir)
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
-    model = AutoModelForSequenceClassification.from_pretrained(model_dir)
     gold = read_pairs(gold_pairs_path)
     report = evaluate_against_gold(
         model=model, tokenizer=tokenizer, gold_pairs=gold, max_length=max_length, device="cpu",

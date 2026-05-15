@@ -117,3 +117,18 @@ def test_train_runs_end_to_end_on_a_handful_of_pairs(tmp_path: Path, monkeypatch
     result = runner_mod.train(cfg)
     assert (result.output_dir / "final_metrics.json").exists()
     assert isinstance(result.mlflow_run_id, str) and result.mlflow_run_id
+
+    # CLI evaluate must reload the trained adapter, not the bare base head.
+    # The runner saves a PEFT adapter to output_dir; loading via
+    # AutoModelForSequenceClassification.from_pretrained(output_dir) would
+    # silently use random-init heads. _run_evaluate must use PeftModel.
+    write_pairs(cfg.gold_pairs_path, [
+        _pair("g1", "weak", 20),
+        _pair("g2", "partial", 55),
+        _pair("g3", "strong", 85),
+    ])
+    from training.train.cli import _run_evaluate
+    report = _run_evaluate(cfg.output_dir, cfg.gold_pairs_path, max_length=32)
+    assert report.n == 3
+    # No accuracy claim — the model is barely trained. The claim is that the
+    # adapter loaded and the forward pass produced one logit row per gold pair.

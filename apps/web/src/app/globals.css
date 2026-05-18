@@ -1,42 +1,507 @@
 @import "tailwindcss";
 
-:root {
-  --background: #fafaf9;
-  --foreground: #1c1917;
-  --surface: #ffffff;
-  --border: #e7e5e4;
-  --muted: #78716c;
+/* ─────────────────────────────────────────────────────────────
+   Resumora AI · Soft Glass × Dreamy
+   Pastel gradient washes (peach → lavender → mint) on warm
+   cream paper, frosted-glass cards, soft serif accents.
+   ───────────────────────────────────────────────────────────── */
 
-  --score-weak: #dc2626;
-  --score-partial: #d97706;
-  --score-strong: #16a34a;
+:root {
+  --paper:     #fbf6ee;
+  --paper-2:   #f3ecde;
+  --ink:       #1a1825;
+  --ink-soft:  #4a4658;
+  --muted:     #837e92;
+  --muted-2:   #b4afc1;
+  --rule:      rgba(26, 24, 37, 0.08);
+  --rule-strong: rgba(26, 24, 37, 0.14);
+
+  --peach:    #ffd4b8;
+  --peach-2:  #f8a978;
+  --lavender: #d4c8f0;
+  --lavender-2: #a48fd9;
+  --mint:     #c8e6d4;
+  --mint-2:   #6fb18a;
+  --sky:      #cce4f0;
+  --rose:     #e7a8b3;
+  --butter:   #f3e3a8;
+
+  --glass-bg: rgba(255, 251, 244, 0.55);
+  --glass-bg-strong: rgba(255, 251, 244, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --glass-shadow: 0 30px 80px -40px rgba(63, 50, 92, 0.25),
+                  0 8px 24px -12px rgba(63, 50, 92, 0.10),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+  --score-weak:    #e26d8a;
+  --score-partial: #e6a955;
+  --score-strong:  #6fb18a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-surface: var(--surface);
-  --color-border: var(--border);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
   --color-muted: var(--muted);
+  --color-peach: var(--peach);
+  --color-lavender: var(--lavender);
+  --color-mint: var(--mint);
   --color-score-weak: var(--score-weak);
   --color-score-partial: var(--score-partial);
   --color-score-strong: var(--score-strong);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --color-border: var(--rule);
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0c0a09;
-    --foreground: #f5f5f4;
-    --surface: #1c1917;
-    --border: #292524;
-    --muted: #a8a29e;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
+html, body {
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--lavender); color: var(--ink); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(26, 24, 37, 0.1);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(26, 24, 37, 0.2); }
+
+/* ─── Dreamy pastel orb background ─────────────────────── */
+.bg-aurora {
+  background:
+    radial-gradient(38rem 30rem at 8% 6%, rgba(255, 212, 184, 0.85), transparent 60%),
+    radial-gradient(42rem 34rem at 92% 10%, rgba(212, 200, 240, 0.85), transparent 60%),
+    radial-gradient(46rem 36rem at 18% 86%, rgba(200, 228, 240, 0.85), transparent 60%),
+    radial-gradient(40rem 32rem at 82% 92%, rgba(200, 230, 212, 0.75), transparent 60%),
+    radial-gradient(30rem 24rem at 50% 50%, rgba(243, 227, 168, 0.35), transparent 65%),
+    var(--paper);
+  filter: saturate(1.05);
+  animation: drift 32s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  0%   { background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0 0; }
+  100% { background-position: -3% 2%, 4% -2%, -2% -1%, 2% 3%, 1% -2%, 0 0; }
+}
+
+/* very subtle grain so it doesn't feel plasticky */
+.bg-grain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.07 0 0 0 0 0.06 0 0 0 0 0.10 0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 180px 180px;
+}
+
+/* ─── Typography utilities ────────────────────────────── */
+.font-display { font-family: var(--font-display), ui-serif, Georgia, serif; }
+.font-mono { font-family: var(--font-mono), ui-monospace, monospace; }
+.italic-display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-style: italic;
+  font-feature-settings: "ss01";
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ─── Glass cards ──────────────────────────────────────── */
+.glass {
+  position: relative;
+  border-radius: 28px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(28px) saturate(1.4);
+  -webkit-backdrop-filter: blur(28px) saturate(1.4);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+.glass-strong {
+  background: var(--glass-bg-strong);
+}
+.glass-quiet {
+  border-radius: 22px;
+  background: rgba(255, 251, 244, 0.45);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 12px 32px -20px rgba(63, 50, 92, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+/* a soft inner highlight on top edge */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 40%;
+  border-radius: 28px 28px 0 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.55), transparent);
+  pointer-events: none;
+}
+
+/* ─── Soft pill ───────────────────────────────────────── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 6px 16px -10px rgba(63, 50, 92, 0.2);
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  backdrop-filter: blur(10px);
+}
+.pill .dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--peach-2), var(--lavender-2));
+  box-shadow: 0 0 10px rgba(248, 169, 120, 0.7);
+  animation: breathe 2.4s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+/* ─── Buttons ─────────────────────────────────────────── */
+.btn-soft {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.95rem 1.2rem 0.95rem 1.5rem;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.55)),
+    linear-gradient(135deg, var(--peach) 0%, var(--lavender) 60%, var(--mint) 100%);
+  background-blend-mode: overlay, normal;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.9),
+    0 1px 2px rgba(63, 50, 92, 0.08),
+    0 14px 30px -14px rgba(164, 143, 217, 0.55);
+  transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 220ms ease,
+              filter 200ms ease;
+  cursor: pointer;
+}
+.btn-soft:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.9),
+    0 1px 2px rgba(63, 50, 92, 0.10),
+    0 22px 38px -18px rgba(164, 143, 217, 0.7);
+}
+.btn-soft:active { transform: translateY(0); }
+.btn-soft:disabled {
+  cursor: not-allowed;
+  filter: saturate(0.4) brightness(0.96);
+  box-shadow: 0 1px 2px rgba(63, 50, 92, 0.08);
+}
+.btn-soft .arrow {
+  display: inline-grid; place-items: center;
+  width: 26px; height: 26px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.9rem;
+  transition: transform 240ms ease;
+}
+.btn-soft:hover .arrow { transform: translateX(2px) rotate(-12deg); }
+
+/* ─── Form fields ─────────────────────────────────────── */
+.field {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 18px;
+  padding: 1rem 1.15rem;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 2px 8px -4px rgba(63, 50, 92, 0.1);
+  transition: border-color 180ms ease, background 220ms ease, box-shadow 240ms ease;
+}
+.field::placeholder { color: var(--muted-2); }
+.field:hover { background: rgba(255, 255, 255, 0.6); }
+.field:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(212, 200, 240, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 0 0 5px rgba(212, 200, 240, 0.35);
+}
+
+/* ─── Drop zone ───────────────────────────────────────── */
+.dropzone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.2rem;
+  border-radius: 20px;
+  border: 1.5px dashed rgba(164, 143, 217, 0.55);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(14px);
+  transition: border-color 220ms ease, background 240ms ease, box-shadow 220ms ease;
+}
+.dropzone:hover {
+  border-color: rgba(164, 143, 217, 0.85);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 14px 30px -22px rgba(164, 143, 217, 0.6);
+}
+.dropzone--filled {
+  border-style: solid;
+  border-color: rgba(111, 177, 138, 0.65);
+  background: linear-gradient(135deg, rgba(200, 230, 212, 0.4), rgba(255, 255, 255, 0.6));
+}
+.dropzone input[type="file"] {
+  position: absolute; inset: 0;
+  opacity: 0; cursor: pointer;
+}
+.dropzone-icon {
+  flex: none;
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--peach), var(--rose));
+  color: var(--ink);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 6px 18px -10px rgba(248, 169, 120, 0.6);
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: 1.3rem;
+}
+.dropzone--filled .dropzone-icon {
+  background: linear-gradient(135deg, var(--mint), var(--sky));
+}
+
+/* ─── Reveal animations ───────────────────────────────── */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px); filter: blur(4px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes dash {
+  from { stroke-dashoffset: var(--dash-from, 1000); }
+  to   { stroke-dashoffset: var(--dash-to, 0); }
+}
+
+.rise { animation: rise 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.fade { animation: fade 800ms ease both; }
+.delay-1 { animation-delay: 120ms; }
+.delay-2 { animation-delay: 220ms; }
+.delay-3 { animation-delay: 320ms; }
+.delay-4 { animation-delay: 420ms; }
+.delay-5 { animation-delay: 520ms; }
+.delay-6 { animation-delay: 620ms; }
+
+/* ─── Loading ─────────────────────────────────────────── */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.orbit {
+  width: 64px; height: 64px;
+  border-radius: 999px;
+  background: conic-gradient(from 0deg, transparent 0 55%, var(--lavender-2) 80%, var(--peach-2) 95%, transparent 100%);
+  mask: radial-gradient(closest-side, transparent 64%, black 66%);
+  -webkit-mask: radial-gradient(closest-side, transparent 64%, black 66%);
+  animation: spin-slow 1.4s linear infinite;
+  filter: drop-shadow(0 6px 16px rgba(164, 143, 217, 0.4));
+}
+
+/* ─── Skill chips ──────────────────────────────────────── */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem 0.35rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  letter-spacing: -0.005em;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.65);
+  color: var(--ink);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 4px 14px -8px rgba(63, 50, 92, 0.15);
+}
+.chip .marker {
+  width: 8px; height: 8px; border-radius: 999px;
+  background: currentColor;
+  opacity: 0.85;
+}
+.chip--match {
+  color: #2f6f4f;
+  background: linear-gradient(135deg, rgba(200, 230, 212, 0.85), rgba(255, 255, 255, 0.7));
+  border-color: rgba(111, 177, 138, 0.45);
+}
+.chip--miss {
+  color: #a64259;
+  background: linear-gradient(135deg, rgba(231, 168, 179, 0.7), rgba(255, 255, 255, 0.7));
+  border-color: rgba(226, 109, 138, 0.45);
+}
+
+/* ─── Misc ─────────────────────────────────────────────── */
+.tabular { font-variant-numeric: tabular-nums; }
+.hairline {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--rule-strong), transparent);
+}
+
+/* ─── Prose styling for rendered markdown docs ─────────── */
+.prose-dreamy {
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 72ch;
+}
+.prose-dreamy > * + * { margin-top: 1.1em; }
+
+.prose-dreamy h1, .prose-dreamy h2, .prose-dreamy h3, .prose-dreamy h4 {
+  color: var(--ink);
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  margin-top: 2em;
+}
+.prose-dreamy h2 {
+  font-size: 1.85rem;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid var(--rule);
+}
+.prose-dreamy h3 { font-size: 1.4rem; margin-top: 1.7em; }
+.prose-dreamy h4 {
+  font-size: 1.05rem;
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  color: var(--ink-soft);
+}
+.prose-dreamy > h2:first-child,
+.prose-dreamy > h3:first-child { margin-top: 0; }
+
+.prose-dreamy p { color: var(--ink-soft); }
+
+.prose-dreamy a {
+  color: #a17ad4;
+  text-decoration: underline;
+  text-decoration-color: rgba(161, 122, 212, 0.35);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 180ms ease, color 180ms ease;
+}
+.prose-dreamy a:hover {
+  color: #8157c4;
+  text-decoration-color: #8157c4;
+}
+
+.prose-dreamy strong { color: var(--ink); font-weight: 600; }
+.prose-dreamy em { font-style: italic; color: var(--ink); }
+
+.prose-dreamy ul, .prose-dreamy ol {
+  padding-left: 1.4em;
+}
+.prose-dreamy ul { list-style: disc; }
+.prose-dreamy ol { list-style: decimal; }
+.prose-dreamy li { margin-top: 0.35em; }
+.prose-dreamy li::marker { color: rgba(161, 122, 212, 0.7); }
+
+.prose-dreamy blockquote {
+  margin: 1.5em 0;
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(212, 200, 240, 0.35), rgba(255, 255, 255, 0.55));
+  border-left: 3px solid rgba(161, 122, 212, 0.6);
+  color: var(--ink-soft);
+  font-style: italic;
+  font-family: var(--font-display), serif;
+}
+.prose-dreamy blockquote p { color: inherit; }
+.prose-dreamy blockquote > * + * { margin-top: 0.6em; }
+
+.prose-dreamy code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.88em;
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+  background: rgba(26, 24, 37, 0.05);
+  border: 1px solid var(--rule);
+  color: var(--ink);
+}
+
+.prose-dreamy pre {
+  position: relative;
+  margin: 1.4em 0;
+  padding: 1.1rem 1.25rem;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(26, 24, 37, 0.95), rgba(26, 24, 37, 0.88));
+  color: #f3ecde;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  overflow-x: auto;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 12px 30px -20px rgba(26, 24, 37, 0.5);
+}
+.prose-dreamy pre code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.prose-dreamy hr {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--rule-strong), transparent);
+  border: 0;
+  margin: 2.4em 0;
+}
+
+.prose-dreamy table {
+  width: 100%;
+  margin: 1.4em 0;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.prose-dreamy th, .prose-dreamy td {
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+.prose-dreamy th {
+  font-weight: 500;
+  color: var(--ink);
+  background: rgba(212, 200, 240, 0.18);
+}
+.prose-dreamy tr:last-child td { border-bottom: 0; }
+
+.prose-dreamy img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 14px 32px -22px rgba(63, 50, 92, 0.4);
 }

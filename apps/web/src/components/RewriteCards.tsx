@@ -2,27 +2,64 @@ import type { BulletRewrite } from "@/lib/types";
 
 export function RewriteCards({ rewrites }: { rewrites: BulletRewrite[] }) {
   return (
-    <section className="flex flex-col gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--surface)] p-6">
-      <h2 className="text-lg font-semibold">Bullet rewrites</h2>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+    <section className="glass p-7 md:p-12">
+      <header className="mb-8 flex flex-wrap items-end justify-between gap-3">
+        <div className="flex flex-col gap-1">
+          <span className="italic-display text-lg leading-none text-[color:#e89a6f]">three small edits</span>
+          <h2 className="font-display text-3xl text-[color:var(--ink)] md:text-4xl">
+            Bullet rewrites
+          </h2>
+        </div>
+        <span className="max-w-[40ch] text-sm text-[color:var(--muted)]">
+          Drop these straight into your résumé — tweak as you see fit.
+        </span>
+      </header>
+
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
         {rewrites.map((rewrite, index) => (
           <article
             key={index}
-            className="flex flex-col gap-3 rounded-xl border border-[color:var(--border)] p-4"
+            className="glass-quiet relative flex flex-col gap-5 p-6"
           >
+            <div className="flex items-baseline justify-between">
+              <span className="italic-display text-2xl text-[color:var(--muted-2)] tabular leading-none">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span className="text-xs text-[color:var(--muted)]">
+                rewrite {index + 1} / {rewrites.length}
+              </span>
+            </div>
+
             {rewrite.original ? (
-              <div className="flex flex-col gap-1">
-                <span className="text-xs uppercase tracking-wide text-[color:var(--muted)]">Before</span>
-                <p className="text-sm line-through decoration-[color:var(--muted)]/70">{rewrite.original}</p>
+              <div className="flex flex-col gap-1.5">
+                <span className="text-xs uppercase tracking-[0.14em] text-[color:#a64259]">
+                  Before
+                </span>
+                <p className="text-sm leading-relaxed text-[color:var(--muted)] line-through decoration-[color:#e26d8a] decoration-[1px] underline-offset-4">
+                  {rewrite.original}
+                </p>
               </div>
             ) : (
-              <span className="text-xs uppercase tracking-wide text-[color:var(--muted)]">Suggested addition</span>
+              <span className="text-xs uppercase tracking-[0.14em] text-[color:#2f6f4f]">
+                Suggested addition
+              </span>
             )}
-            <div className="flex flex-col gap-1">
-              <span className="text-xs uppercase tracking-wide text-[color:var(--muted)]">After</span>
-              <p className="text-sm font-medium">{rewrite.rewritten}</p>
+
+            <div className="flex flex-col gap-1.5">
+              <span className="text-xs uppercase tracking-[0.14em] text-[color:#a17ad4]">
+                After
+              </span>
+              <p className="font-display text-base italic leading-snug text-[color:var(--ink)] md:text-lg">
+                {rewrite.rewritten}
+              </p>
             </div>
-            <p className="text-xs text-[color:var(--muted)]">{rewrite.rationale}</p>
+
+            <div className="mt-auto flex items-start gap-2 border-t border-[color:var(--rule)] pt-3">
+              <span aria-hidden className="text-xs text-[color:var(--muted)]">¶</span>
+              <p className="text-xs leading-relaxed text-[color:var(--ink-soft)]">
+                {rewrite.rationale}
+              </p>
+            </div>
           </article>
         ))}
       </div>

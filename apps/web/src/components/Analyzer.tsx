@@ -41,7 +41,7 @@ export function Analyzer() {
       <section className="glass p-7 md:p-10">
         <div className="mb-7 flex flex-wrap items-end justify-between gap-3">
           <h2 className="font-display text-2xl text-[color:var(--ink)] md:text-3xl">
-            <span className="italic-display text-[color:#a17ad4]">Begin</span>{" "}
+            <span className="italic-display text-[color:var(--teal)]">Begin</span>{" "}
             an analysis
           </h2>
           <span className="text-xs text-[color:var(--muted)]">
@@ -61,15 +61,15 @@ export function Analyzer() {
             aria-hidden
             className="grid h-11 w-11 flex-none place-items-center rounded-full text-lg"
             style={{
-              background: "linear-gradient(135deg, #ffd4d4, #fff)",
-              color: "#a64259",
-              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.7), 0 6px 18px -10px rgba(166,66,89,0.4)",
+              background: "linear-gradient(135deg, var(--clay-soft), var(--paper-3))",
+              color: "var(--clay-deep)",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.6), 0 6px 18px -10px rgba(183,82,43,0.45)",
             }}
           >
             !
           </span>
           <div className="flex flex-col gap-1">
-            <p className="text-sm font-medium text-[color:#a64259]">
+            <p className="text-sm font-medium text-[color:var(--clay-deep)]">
               Something didn&rsquo;t go to plan
             </p>
             <p className="text-sm text-[color:var(--ink-soft)]">{status.message}</p>

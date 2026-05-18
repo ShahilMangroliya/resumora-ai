@@ -14,10 +14,10 @@ export default function Home() {
         </span>
 
         <h1 className="rise delay-1 font-display text-[clamp(2.8rem,7vw,5.8rem)] font-medium leading-[1.02] tracking-[-0.025em] text-[color:var(--ink)]">
-          How does your <span className="italic-display text-[color:#a17ad4]">résumé</span>
+          How does your <span className="italic-display text-[color:var(--teal)]">résumé</span>
           <br />
           read the room
-          <span className="italic-display text-[color:#e89a6f]">?</span>
+          <span className="italic-display text-[color:var(--clay)]">?</span>
         </h1>
 
         <p className="rise delay-2 max-w-[58ch] text-base leading-relaxed text-[color:var(--ink-soft)] md:text-lg">
@@ -27,10 +27,10 @@ export default function Home() {
         </p>
 
         <div className="rise delay-3 flex flex-wrap items-center justify-center gap-2 pt-1">
-          <Trust label="DistilBERT + LoRA" tone="peach" />
-          <Trust label="Sentence transformers" tone="lavender" />
-          <Trust label="Llama 3.2 · local" tone="mint" />
-          <Trust label="FastAPI ↔ Next 16" tone="sky" />
+          <Trust label="DistilBERT + LoRA" tone="clay" />
+          <Trust label="Sentence transformers" tone="teal" />
+          <Trust label="Llama 3.2 · local" tone="moss" />
+          <Trust label="FastAPI ↔ Next 16" tone="ochre" />
         </div>
       </section>
 
@@ -66,7 +66,7 @@ function TopBar() {
         <NavItem href="/docs">Docs</NavItem>
         <NavItem href="/docs/learning-guide">Source</NavItem>
       </nav>
-      <span className="pill"><span className="dot" /> hello</span>
+      <span className="pill"><span className="dot" /> Shahil</span>
     </div>
   );
 }
@@ -85,7 +85,7 @@ function NavItem({
       href={href}
       className={`rounded-full px-4 py-1.5 text-sm transition-colors ${
         active
-          ? "bg-white/60 text-[color:var(--ink)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_4px_14px_-8px_rgba(63,50,92,0.2)]"
+          ? "bg-white/60 text-[color:var(--ink)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_4px_14px_-8px_rgba(20,19,14,0.18)]"
           : "text-[color:var(--ink-soft)] hover:bg-white/40 hover:text-[color:var(--ink)]"
       }`}
     >
@@ -98,27 +98,27 @@ function Mark() {
   return (
     <span
       aria-hidden
-      className="inline-grid h-9 w-9 place-items-center rounded-2xl border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_8px_18px_-10px_rgba(164,143,217,0.6)]"
+      className="inline-grid h-9 w-9 place-items-center rounded-2xl border border-white/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_8px_18px_-10px_rgba(14,93,82,0.5)]"
       style={{
         background:
-          "linear-gradient(135deg, var(--peach) 0%, var(--lavender) 60%, var(--mint) 100%)",
+          "linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%)",
       }}
     >
-      <span className="italic-display text-lg leading-none text-[color:var(--ink)]">r</span>
+      <span className="italic-display text-lg leading-none text-[color:var(--paper-3)]">r</span>
     </span>
   );
 }
 
-function Trust({ label, tone }: { label: string; tone: "peach" | "lavender" | "mint" | "sky" }) {
+function Trust({ label, tone }: { label: string; tone: "clay" | "teal" | "moss" | "ochre" }) {
   const bg: Record<typeof tone, string> = {
-    peach: "linear-gradient(135deg, rgba(255,212,184,0.6), rgba(255,255,255,0.5))",
-    lavender: "linear-gradient(135deg, rgba(212,200,240,0.6), rgba(255,255,255,0.5))",
-    mint: "linear-gradient(135deg, rgba(200,230,212,0.6), rgba(255,255,255,0.5))",
-    sky: "linear-gradient(135deg, rgba(204,228,240,0.6), rgba(255,255,255,0.5))",
+    clay:  "linear-gradient(135deg, rgba(241,212,196,0.65), rgba(255,253,248,0.55))",
+    teal:  "linear-gradient(135deg, rgba(215,229,225,0.7),  rgba(255,253,248,0.55))",
+    moss:  "linear-gradient(135deg, rgba(220,227,205,0.7),  rgba(255,253,248,0.55))",
+    ochre: "linear-gradient(135deg, rgba(239,224,187,0.7),  rgba(255,253,248,0.55))",
   };
   return (
     <span
-      className="rounded-full border border-white/70 px-3 py-1.5 text-xs text-[color:var(--ink-soft)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]"
+      className="rounded-full border border-[color:var(--rule)] px-3 py-1.5 text-xs text-[color:var(--ink-soft)] shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]"
       style={{ background: bg[tone] }}
     >
       {label}

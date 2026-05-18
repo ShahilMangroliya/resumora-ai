@@ -46,22 +46,22 @@ function Ornament() {
     >
       <defs>
         <radialGradient id="orn-a" cx="0.4" cy="0.35" r="0.6">
-          <stop offset="0%" stopColor="#ffd4b8" stopOpacity="0.95" />
-          <stop offset="100%" stopColor="#ffd4b8" stopOpacity="0" />
+          <stop offset="0%" stopColor="#f1d4c4" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#f1d4c4" stopOpacity="0" />
         </radialGradient>
         <radialGradient id="orn-b" cx="0.65" cy="0.7" r="0.55">
-          <stop offset="0%" stopColor="#d4c8f0" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#d4c8f0" stopOpacity="0" />
+          <stop offset="0%" stopColor="#d7e5e1" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#d7e5e1" stopOpacity="0" />
         </radialGradient>
         <radialGradient id="orn-c" cx="0.55" cy="0.4" r="0.4">
-          <stop offset="0%" stopColor="#c8e6d4" stopOpacity="0.95" />
-          <stop offset="100%" stopColor="#c8e6d4" stopOpacity="0" />
+          <stop offset="0%" stopColor="#dce3cd" stopOpacity="0.95" />
+          <stop offset="100%" stopColor="#dce3cd" stopOpacity="0" />
         </radialGradient>
       </defs>
       <circle cx="120" cy="120" r="110" fill="url(#orn-a)" />
       <circle cx="140" cy="140" r="100" fill="url(#orn-b)" />
       <circle cx="110" cy="100" r="70"  fill="url(#orn-c)" />
-      <circle cx="120" cy="120" r="3" fill="rgba(26,24,37,0.5)" />
+      <circle cx="120" cy="120" r="3" fill="rgba(20,19,14,0.55)" />
     </svg>
   );
 }

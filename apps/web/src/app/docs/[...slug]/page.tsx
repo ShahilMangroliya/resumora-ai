@@ -64,7 +64,7 @@ export default async function DocPage({ params }: PageProps) {
           </nav>
 
           <header className="mb-8 border-b border-[color:var(--rule)] pb-6">
-            <span className="italic-display text-lg leading-none text-[color:#a17ad4]">
+            <span className="italic-display text-lg leading-none text-[color:var(--teal)]">
               {current ? GROUP_LABEL[current.group].toLowerCase() : "reference"}
             </span>
             <h1 className="mt-1 font-display text-4xl leading-[1.05] tracking-[-0.02em] text-[color:var(--ink)] md:text-5xl">
@@ -113,7 +113,7 @@ function DocsSidebar({ docs, currentSlug }: { docs: DocEntry[]; currentSlug: str
                         href={href}
                         className={`block rounded-lg px-3 py-1.5 text-sm leading-snug transition-colors ${
                           active
-                            ? "bg-white/70 text-[color:var(--ink)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_4px_14px_-8px_rgba(63,50,92,0.2)]"
+                            ? "bg-white/70 text-[color:var(--ink)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_4px_14px_-8px_rgba(20,19,14,0.18)]"
                             : "text-[color:var(--ink-soft)] hover:bg-white/40 hover:text-[color:var(--ink)]"
                         }`}
                       >

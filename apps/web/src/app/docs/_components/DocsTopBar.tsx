@@ -6,13 +6,13 @@ export function DocsTopBar() {
       <Link href="/" className="flex items-center gap-3">
         <span
           aria-hidden
-          className="inline-grid h-9 w-9 place-items-center rounded-2xl border border-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),0_8px_18px_-10px_rgba(164,143,217,0.6)]"
+          className="inline-grid h-9 w-9 place-items-center rounded-2xl border border-white/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_8px_18px_-10px_rgba(14,93,82,0.5)]"
           style={{
             background:
-              "linear-gradient(135deg, var(--peach) 0%, var(--lavender) 60%, var(--mint) 100%)",
+              "linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%)",
           }}
         >
-          <span className="italic-display text-lg leading-none text-[color:var(--ink)]">r</span>
+          <span className="italic-display text-lg leading-none text-[color:var(--paper-3)]">r</span>
         </span>
         <span className="font-display text-xl tracking-tight text-[color:var(--ink)]">
           Resumora
@@ -23,7 +23,7 @@ export function DocsTopBar() {
         <NavItem href="/docs" active>Docs</NavItem>
         <NavItem href="https://github.com/anthropics/claude-code" external>Source</NavItem>
       </nav>
-      <span className="pill"><span className="dot" /> hello</span>
+      <span className="pill"><span className="dot" /> Shahil</span>
     </div>
   );
 }
@@ -41,7 +41,7 @@ function NavItem({
 }) {
   const cls = `rounded-full px-4 py-1.5 text-sm transition-colors ${
     active
-      ? "bg-white/60 text-[color:var(--ink)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_4px_14px_-8px_rgba(63,50,92,0.2)]"
+      ? "bg-white/60 text-[color:var(--ink)] shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_4px_14px_-8px_rgba(20,19,14,0.18)]"
       : "text-[color:var(--ink-soft)] hover:bg-white/40 hover:text-[color:var(--ink)]"
   }`;
   if (external) {

@@ -10,9 +10,9 @@ export const metadata = {
 };
 
 const GROUP_META: Record<DocEntry["group"], { eyebrow: string; title: string; tone: string }> = {
-  guide:    { eyebrow: "start here", title: "Learning guide",    tone: "linear-gradient(135deg, rgba(255,212,184,0.55), rgba(255,255,255,0.6))" },
-  setup:    { eyebrow: "prerequisites", title: "Setup",          tone: "linear-gradient(135deg, rgba(200,228,240,0.55), rgba(255,255,255,0.6))" },
-  concepts: { eyebrow: "reference shelf", title: "Concepts",     tone: "linear-gradient(135deg, rgba(212,200,240,0.55), rgba(255,255,255,0.6))" },
+  guide:    { eyebrow: "start here",      title: "Learning guide", tone: "linear-gradient(135deg, rgba(241,212,196,0.6), rgba(255,253,248,0.65))" },
+  setup:    { eyebrow: "prerequisites",   title: "Setup",          tone: "linear-gradient(135deg, rgba(239,224,187,0.6), rgba(255,253,248,0.65))" },
+  concepts: { eyebrow: "reference shelf", title: "Concepts",       tone: "linear-gradient(135deg, rgba(215,229,225,0.7), rgba(255,253,248,0.65))" },
 };
 
 const GROUP_ORDER: DocEntry["group"][] = ["guide", "setup", "concepts"];
@@ -35,7 +35,7 @@ export default async function DocsIndex() {
           <span>Help · learning · concept reference</span>
         </span>
         <h1 className="rise delay-1 font-display text-[clamp(2.6rem,6vw,5rem)] font-medium leading-[1.02] tracking-[-0.025em] text-[color:var(--ink)]">
-          <span className="italic-display text-[color:#a17ad4]">Docs</span> &amp; help
+          <span className="italic-display text-[color:var(--teal)]">Docs</span> &amp; help
         </h1>
         <p className="rise delay-2 max-w-[58ch] text-base leading-relaxed text-[color:var(--ink-soft)] md:text-lg">
           A slow on-ramp for software engineers new to ML, a setup checklist for

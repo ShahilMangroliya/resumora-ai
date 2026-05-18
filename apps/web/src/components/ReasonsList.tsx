@@ -9,19 +9,19 @@ const CATEGORY_LABEL: Record<Reason["category"], string> = {
 };
 
 const CATEGORY_COLOR: Record<Reason["category"], string> = {
-  matched_skill: "#6fb18a",
-  missing_skill: "#e26d8a",
-  experience_match: "#6fb18a",
-  experience_gap: "#e6a955",
-  other: "#a17ad4",
+  matched_skill: "#4b6a3c",
+  missing_skill: "#b7522b",
+  experience_match: "#4b6a3c",
+  experience_gap: "#b68633",
+  other: "#0e5d52",
 };
 
 const CATEGORY_BG: Record<Reason["category"], string> = {
-  matched_skill: "linear-gradient(135deg, rgba(200,230,212,0.7), rgba(255,255,255,0.7))",
-  missing_skill: "linear-gradient(135deg, rgba(231,168,179,0.65), rgba(255,255,255,0.7))",
-  experience_match: "linear-gradient(135deg, rgba(200,230,212,0.7), rgba(255,255,255,0.7))",
-  experience_gap: "linear-gradient(135deg, rgba(243,227,168,0.7), rgba(255,255,255,0.7))",
-  other: "linear-gradient(135deg, rgba(212,200,240,0.7), rgba(255,255,255,0.7))",
+  matched_skill:    "linear-gradient(135deg, rgba(220,227,205,0.75), rgba(255,253,248,0.65))",
+  missing_skill:    "linear-gradient(135deg, rgba(241,212,196,0.75), rgba(255,253,248,0.65))",
+  experience_match: "linear-gradient(135deg, rgba(220,227,205,0.75), rgba(255,253,248,0.65))",
+  experience_gap:   "linear-gradient(135deg, rgba(239,224,187,0.75), rgba(255,253,248,0.65))",
+  other:            "linear-gradient(135deg, rgba(215,229,225,0.8),  rgba(255,253,248,0.65))",
 };
 
 export function ReasonsList({ reasons }: { reasons: Reason[] }) {
@@ -29,7 +29,7 @@ export function ReasonsList({ reasons }: { reasons: Reason[] }) {
     <section className="glass p-7 md:p-12">
       <header className="mb-7 flex flex-wrap items-end justify-between gap-3">
         <div className="flex flex-col gap-1">
-          <span className="italic-display text-lg leading-none text-[color:#a17ad4]">a quiet look at</span>
+          <span className="italic-display text-lg leading-none text-[color:var(--teal)]">a quiet look at</span>
           <h2 className="font-display text-3xl text-[color:var(--ink)] md:text-4xl">
             Why this score
           </h2>

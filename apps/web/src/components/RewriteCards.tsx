@@ -5,7 +5,7 @@ export function RewriteCards({ rewrites }: { rewrites: BulletRewrite[] }) {
     <section className="glass p-7 md:p-12">
       <header className="mb-8 flex flex-wrap items-end justify-between gap-3">
         <div className="flex flex-col gap-1">
-          <span className="italic-display text-lg leading-none text-[color:#e89a6f]">three small edits</span>
+          <span className="italic-display text-lg leading-none text-[color:var(--clay)]">three small edits</span>
           <h2 className="font-display text-3xl text-[color:var(--ink)] md:text-4xl">
             Bullet rewrites
           </h2>
@@ -32,21 +32,21 @@ export function RewriteCards({ rewrites }: { rewrites: BulletRewrite[] }) {
 
             {rewrite.original ? (
               <div className="flex flex-col gap-1.5">
-                <span className="text-xs uppercase tracking-[0.14em] text-[color:#a64259]">
+                <span className="text-xs uppercase tracking-[0.14em] text-[color:var(--clay-deep)]">
                   Before
                 </span>
-                <p className="text-sm leading-relaxed text-[color:var(--muted)] line-through decoration-[color:#e26d8a] decoration-[1px] underline-offset-4">
+                <p className="text-sm leading-relaxed text-[color:var(--muted)] line-through decoration-[color:var(--clay)] decoration-[1px] underline-offset-4">
                   {rewrite.original}
                 </p>
               </div>
             ) : (
-              <span className="text-xs uppercase tracking-[0.14em] text-[color:#2f6f4f]">
+              <span className="text-xs uppercase tracking-[0.14em] text-[color:var(--moss-deep)]">
                 Suggested addition
               </span>
             )}
 
             <div className="flex flex-col gap-1.5">
-              <span className="text-xs uppercase tracking-[0.14em] text-[color:#a17ad4]">
+              <span className="text-xs uppercase tracking-[0.14em] text-[color:var(--teal)]">
                 After
               </span>
               <p className="font-display text-base italic leading-snug text-[color:var(--ink)] md:text-lg">

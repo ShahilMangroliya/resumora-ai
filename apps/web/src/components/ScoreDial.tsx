@@ -16,9 +16,9 @@ const LABEL_COPY: Record<ScoreResult["predicted_label"], string> = {
 };
 
 const LABEL_HALO: Record<ScoreResult["predicted_label"], string> = {
-  weak: "linear-gradient(135deg, #f7c1cf 0%, #fff 70%)",
-  partial: "linear-gradient(135deg, #f9d9a1 0%, #fff 70%)",
-  strong: "linear-gradient(135deg, #c6e5d2 0%, #fff 70%)",
+  weak:    "linear-gradient(135deg, #f1d4c4 0%, #fdf8ee 70%)",
+  partial: "linear-gradient(135deg, #efe0bb 0%, #fdf8ee 70%)",
+  strong:  "linear-gradient(135deg, #dce3cd 0%, #fdf8ee 70%)",
 };
 
 const GAUGE_START = 135;
@@ -99,7 +99,7 @@ export function ScoreDial({ score }: { score: ScoreResult }) {
             <path
               d={trackPath}
               fill="none"
-              stroke="rgba(26, 24, 37, 0.07)"
+              stroke="rgba(20, 19, 14, 0.08)"
               strokeWidth={STROKE}
               strokeLinecap="round"
             />
@@ -129,7 +129,7 @@ export function ScoreDial({ score }: { score: ScoreResult }) {
                 <line
                   key={t}
                   x1={a.x} y1={a.y} x2={b.x} y2={b.y}
-                  stroke="rgba(26, 24, 37, 0.18)"
+                  stroke="rgba(20, 19, 14, 0.22)"
                   strokeWidth={1.2}
                   strokeLinecap="round"
                 />
@@ -162,7 +162,7 @@ export function ScoreDial({ score }: { score: ScoreResult }) {
                 background: halo,
                 border: `1px solid ${color}66`,
                 color: "var(--ink)",
-                boxShadow: `inset 0 1px 0 rgba(255,255,255,0.7), 0 6px 18px -10px ${color}66`,
+                boxShadow: `inset 0 1px 0 rgba(255,255,255,0.6), 0 6px 18px -10px ${color}66`,
               }}
             >
               {LABEL_COPY[score.predicted_label]}
